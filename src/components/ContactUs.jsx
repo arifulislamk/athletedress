@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactUs = () => {
   return (
-    <div>
+    <>
       <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
         <div className="flex flex-col justify-between">
           <div className="space-y-2">
@@ -59,7 +59,7 @@ const ContactUs = () => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
