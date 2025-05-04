@@ -1,10 +1,14 @@
-import { useForm } from "react-hook-form";
 
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const { register, handleSubmit} = useForm() ;
+  const {user} = useContext(AuthContext) ;
+  console.log(user);
   const handleLoginBtn = data => {
     const { email, password} = data ;
-    console.log(email,password);
+    console.log(email,password,user);
   }
   return (
     <div className=" justify-center flex">
