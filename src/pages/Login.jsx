@@ -2,7 +2,9 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../provider/AuthProvider";
+import useCommonAxios from "../hooks/useCommonAxios";
 const Login = () => {
+  const commonAxios = useCommonAxios() ;
   const { register, handleSubmit} = useForm() ;
   const {user,loginUser} = useContext(AuthContext) ;
   console.log(user);
