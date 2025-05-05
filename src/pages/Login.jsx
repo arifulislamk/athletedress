@@ -3,21 +3,42 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../provider/AuthProvider";
 import useCommonAxios from "../hooks/useCommonAxios";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const commonAxios = useCommonAxios() ;
+  const navigate = useNavigate();
   const { register, handleSubmit} = useForm() ;
   const {user,loginUser} = useContext(AuthContext) ;
   console.log(user);
-  const handleLoginBtn = data => {
-    const { email, password} = data ;
-    console.log(email,password,user);
-    loginUser(email, password)
-    .then(res => {
-      console.log(res.user);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+
+  const handleLoginBtn = async(data) => {
+    const { emailornumber, password} = data ;
+    console.log(emailornumber,password);
+
+    const userinfo = { emailornumber, password };
+
+    try {
+      const { data } = await commonAxios.post("/login", userinfo);
+      console.log(data);
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userType", data.usertype);
+        localStorage.setItem("email", data.email);
+        // alert("Login successful");
+        navigate("/")
+      } else {
+        alert(data.message);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+    // loginUser(email, password)
+    // .then(res => {
+    //   console.log(res.user);
+    // })
+    // .catch(error => {
+    //   console.log(error);
+    // })
   }
   return (
     <div className=" justify-center flex">
@@ -26,13 +47,13 @@ const Login = () => {
         <form onSubmit={handleSubmit(handleLoginBtn)} noValidate="" action="" className="space-y-6">
           <div className="space-y-1 text-sm">
             <label htmlFor="username" className="block dark:text-gray-600">
-              Email
+              Email / Number
             </label>
             <input
-              type="email"
-              { ...register("email")}
-              name="email"
-              placeholder="Email"
+              type="text"
+              { ...register("emailornumber")}
+              name="emailornumber"
+              placeholder="emailornumber"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>

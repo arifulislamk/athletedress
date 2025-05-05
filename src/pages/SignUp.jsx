@@ -27,11 +27,11 @@ const SignUp = () => {
     }
   })
   const handleSignupBtn = data => {
-    const { name, email, password} = data ;
+    const { name, email, password,number} = data ;
     console.log(name, email, password)
 
       try {
-        const info = { name , email, password} ;
+        const info = { name ,number, email, password , usertype: "Customer"} ;
         mutateAsync(info)
       } catch(err) {
         console.log(err) ;
@@ -67,6 +67,19 @@ const SignUp = () => {
                 name="name"
                 {...register("name")}
                 placeholder="Enter Your Name Here"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                data-temp-mail-org="0"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block mb-2 text-sm">
+                Number
+              </label>
+              <input
+                type="text"
+                name="number"
+                {...register("number")}
+                placeholder="Enter Your Phone number"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
