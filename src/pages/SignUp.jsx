@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
+  const { register , handleSubmit } = useForm()
+  const { createuser } = useContext(AuthContext);
+
+  const handleSignupBtn = data => {
+    const { name, email, password} = data ;
+    console.log(name, email, password)
+       createuser(email, password)
+       .then( res => {
+        console.log(res.user,'Registration Done')
+       })
+       .catch(error => {
+        console.log(error) ;
+       })
+    }
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
@@ -11,6 +28,7 @@ const SignUp = () => {
           <p className="text-sm text-gray-400">Welcome to Athlete Dress</p>
         </div>
         <form
+          onSubmit={handleSubmit(handleSignupBtn)}
           className="space-y-6 ng-untouched ng-pristine ng-valid"
         >
           <div className="space-y-4">
@@ -21,13 +39,13 @@ const SignUp = () => {
               <input
                 type="text"
                 name="name"
-                id="name"
+                {...register("name")}
                 placeholder="Enter Your Name Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="image" className="block mb-2 text-sm">
                 Select Image:
               </label>
@@ -38,7 +56,7 @@ const SignUp = () => {
                 name="image"
                 accept="image/*"
               />
-            </div>
+            </div> */}
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
                 Email address
@@ -46,7 +64,7 @@ const SignUp = () => {
               <input
                 type="email"
                 name="email"
-                id="email"
+                { ...register("email")}
                 required
                 placeholder="Enter Your Email Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
@@ -63,7 +81,7 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 autoComplete="new-password"
-                id="password"
+                {...register("password")}
                 required
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
