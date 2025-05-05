@@ -1,23 +1,49 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import { useMutation } from "@tanstack/react-query";
+import useCommonAxios from "../hooks/useCommonAxios";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const commonAxios = useCommonAxios() ;
+  const navigate = useNavigate();
   const { register , handleSubmit } = useForm()
   const { createuser } = useContext(AuthContext);
 
+
+  const { mutateAsync } = useMutation({
+    mutationFn : async (info) => {
+      const {data} = await commonAxios.post("/register",info) ;
+      console.log(data)
+      return data ;
+    },
+    onSuccess : () => {
+      console.log("User create Succesfull")
+      toast.success("User Create Succesful");
+      navigate("/");
+    }
+  })
   const handleSignupBtn = data => {
     const { name, email, password} = data ;
     console.log(name, email, password)
-       createuser(email, password)
-       .then( res => {
-        console.log(res.user,'Registration Done')
-       })
-       .catch(error => {
-        console.log(error) ;
-       })
+
+      try {
+        const info = { name , email, password} ;
+        mutateAsync(info)
+      } catch(err) {
+        console.log(err) ;
+      }
+
+      //  createuser(email, password)
+      //  .then( res => {
+      //   console.log(res.user,'Registration Done')
+      //  })
+      //  .catch(error => {
+      //   console.log(error) ;
+      //  })
     }
 
   return (
