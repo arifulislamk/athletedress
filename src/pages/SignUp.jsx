@@ -17,7 +17,12 @@ const SignUp = () => {
   const { mutateAsync } = useMutation({
     mutationFn : async (info) => {
       const {data} = await commonAxios.post("/register",info) ;
-      console.log(data)
+      console.log(data,"ddd")
+      if(data.token){
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userType", data.usertype);
+        localStorage.setItem("email", data.email);
+      }
       return data ;
     },
     onSuccess : () => {

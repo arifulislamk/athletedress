@@ -1,6 +1,22 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [user, setuser] = useState({});
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    const userType = localStorage.getItem("userType");
+    const info = { email, userType };
+    setuser(info);
+    // console.log(info);
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    reloadPage();
+  };
+
+  console.log(user);
   return (
     <div>
       <div className="navbar text-cyan-950 shadow-lg bg-slate-300">
