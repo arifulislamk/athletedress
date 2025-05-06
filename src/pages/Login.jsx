@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../provider/AuthProvider";
 import useCommonAxios from "../hooks/useCommonAxios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const commonAxios = useCommonAxios() ;
   const navigate = useNavigate();
@@ -116,13 +116,13 @@ const Login = () => {
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-600">
           Don't have an account?
-          <a
+          <Link
             rel="noopener noreferrer"
-            href="/signup"
+            to={"/signup"}
             className="underline dark:text-gray-800"
           >
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
