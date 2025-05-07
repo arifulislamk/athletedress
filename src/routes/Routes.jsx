@@ -5,6 +5,7 @@ import ContactUs from "../components/ContactUs";
 import Login from "../pages/Login";
 import NewArrival from "../pages/NewArrival";
 import SignUp from "../pages/SignUp";
+import AddJersey from "../pages/AddJersey";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
         {
           path: "newArrival",
           element: <NewArrival />
-        }
+        },
+        {
+          path: "addJersey",
+          element: <AddJersey />
+        },
       ]
     },
   ])
