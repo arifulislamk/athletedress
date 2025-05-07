@@ -26,6 +26,7 @@ const Login = () => {
         localStorage.setItem("email", data.email);
         // alert("Login successful");
         navigate("/")
+        location.reload()
       } else {
         alert(data.message);
       }

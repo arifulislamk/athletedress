@@ -151,7 +151,11 @@ const Navbar = () => {
                         alt=""
                       />
                     ) : (
-                      "PhotoNot Availavail this User"
+                      <img
+                        className="lg:h-12 w-10 md:w-[50px] rounded-3xl "
+                        src='https://i.ibb.co.com/5gQKsL1m/images.jpg'
+                        alt=""
+                      />
                     )}
                   </div>
 

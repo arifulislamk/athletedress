@@ -29,6 +29,7 @@ const SignUp = () => {
       console.log("User create Succesfull")
       toast.success("User Create Succesful");
       navigate("/");
+      location.reload()
     }
   })
   const handleSignupBtn = data => {
