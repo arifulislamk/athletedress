@@ -6,10 +6,12 @@ import Login from "../pages/Login";
 import NewArrival from "../pages/NewArrival";
 import SignUp from "../pages/SignUp";
 import AddJersey from "../pages/AddJersey";
+import AllStock from "../pages/AllStock";
+import DashBoard from "../pages/DashBoard";
 
 const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/", 
       element: <Main />,
       children: [
         {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
         {
           path: "addJersey",
           element: <AddJersey />
+        },
+        {
+          path: "/allStock",
+          element: <AllStock />
+        },
+        {
+          path: "/dashboard",
+          element: <DashBoard />
         },
       ]
     },

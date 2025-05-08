@@ -4,7 +4,7 @@ const FeaturesJercy = () => {
     <div>
       <div>
         <h2 className="font-poppins font-medium  text-center text-2xl md:text-3xl  lg:text-5xl mb-10">
-          Featured Jersy
+          Featured Jersey
         </h2>
 
         <div className="card font-open-sans card-compact bg-base-100 shadow-xl">
