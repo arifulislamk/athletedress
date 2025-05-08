@@ -24,7 +24,7 @@ const AddJersey = () => {
       return await commonAxios.post('/alljerseys', jersey);
     },
     onSuccess: () => {
-      navigate("/manageJerseys");
+      navigate("/allStock");
       Swal.fire({
         title: "jersey Added done",
         icon: "success",
