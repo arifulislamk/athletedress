@@ -31,7 +31,7 @@ const Slider = () => {
                 </p>
                 <div className=" flex gap-10 items-center">
                   <div>
-                    <Link to="/jerseyDetails/663f495e442329bb0c45555a">
+                    <Link to="/jerseyDetails/681c4e89461c0c23d72e9ace">
                       <Slide triggerOnce>
                         <button className="btn lg:mt-10 bg-orange-400  text-white">
                           View Details
@@ -86,7 +86,7 @@ const Slider = () => {
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
                 </p>
-                <Link to="/jerseyDetails/663f49b1442329bb0c45555b">
+                <Link to="/jerseyDetails/681b82fa04c7421a46f69c11">
                   <Slide triggerOnce>
                     <button className="btn lg:mt-10 bg-orange-400  text-white">
                       View Details

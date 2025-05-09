@@ -19,12 +19,12 @@ const AllStock = () => {
     useEffect(() => {
         const getData = async () => {
             const { data } = await commonAxios("/allJerseys")
-            console.log(data)
+            console.log(data,"data get")
             setMyjerseys(data)
         }
         getData()
     }, [user])
-
+    console.log(jerseys,"data usetsss")
     const handleDeletejersey = _id => {
         Swal.fire({
             title: "Are you sure?",
@@ -37,7 +37,7 @@ const AllStock = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log('delete', _id)
-                commonAxios.delete(`/alljerseysdelete/${_id}`)
+                commonAxios.delete(`/jerseydelete/${_id}`)
                     .then(res => {
                         console.log(res.data)
                         if (res.data.deletedCount > 0) {

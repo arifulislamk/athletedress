@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp";
 import AddJersey from "../pages/AddJersey";
 import AllStock from "../pages/AllStock";
 import DashBoard from "../pages/DashBoard";
+import JerseyDetails from "../pages/JerseyDetails";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
         {
           path: "/dashboard",
           element: <DashBoard />
+        },
+        {
+          path: "/jerseyDetails/:id",
+          element: <JerseyDetails />,
+          loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/jerseyDetails/${params.id}`)
         },
       ]
     },
