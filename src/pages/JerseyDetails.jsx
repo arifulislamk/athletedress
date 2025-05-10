@@ -25,6 +25,7 @@ const JerseyDetails = () => {
         _id,
         jerseyName,
         jerseyQuantity,
+        price,
         jerseyImage,
         pickupLocation,
         expiredDate,
@@ -73,7 +74,7 @@ const JerseyDetails = () => {
             </Helmet>
             <Fade cascade duration={2000}>
 
-                <div className=" flex flex-col items-center gap-3 md:flex-row">
+                <div className=" mt-5 flex flex-col items-center gap-3 md:flex-row">
                     <div className="  md:w-2/3">
                         <img className="w-full lg:h-[500px] rounded-lg" src={jerseyImage} alt="" />
                     </div>
@@ -82,26 +83,12 @@ const JerseyDetails = () => {
                         <div className=" flex flex-col md:flex-row items-center lg:gap-10">
 
                             <div className=" space-y-3 lg:space-y-5">
-                                <h1 className=" font-bold text-xl text-center text-red-500">Donar Information / Who add this jersey?</h1>
-                                <p><span className=" lg:mr-6"> Name :</span> {donatorName ? donatorName : "Name Not Found"}</p>
-                                <p> <span className=" lg:mr-6">Email : </span> {donatorEmail ? donatorEmail : "email not found"}</p>
+                                <h1 className=" font-bold text-2xl ">{jerseyName}</h1>
+                                <p>Price : {price}</p>
                                 <p> <span className=" lg:mr-6">Pickup Location : </span> {pickupLocation ? pickupLocation : "location not found"}</p>
-                            </div>
-
-                            <div>
-                                <img className=" rounded-full" src={donatorImage} alt="" />
                             </div>
                         </div>
                         <div className="flex flex-col ">
-                            <div className="mb-5 mt-6 space-y-3 md:space-y-5 flex-grow">
-                                <p> <span className="md:text-2xl font-medium mr-5"> jersey Name : {jerseyName} </span> </p>
-                                <p> <span className="md:text-2xl font-medium mr-5">Quantity : </span> {jerseyQuantity}</p>
-                                <p> <span className="md:text-2xl font-medium mr-5">Expire Date/Time :</span> {new Date(expiredDate).toLocaleDateString('en-GB', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: 'numeric'
-                                })}</p>
-                            </div>
                             {/* <button className="btn w-full bg-secondary ">Request</button> */}
                             {/* Open the modal using document.getElementById('ID').showModal() method */}
                             <button className="btn  bg-green-500 text-3xl text-red-500" onClick={() => document.getElementById('my_modal_2').showModal()}>Request</button>

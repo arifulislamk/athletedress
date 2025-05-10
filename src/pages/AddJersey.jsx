@@ -40,38 +40,38 @@ const AddJersey = () => {
     event.preventDefault();
     const form = event.target;
     const jerseyName = form.jerseyname.value;
-    const jerseyQuantity = form.jerseyquantity.value;
+    const m = form.m.value;
+    const l = form.l.value;
+    const xl = form.xl.value;
+    const xl2 = form.xl2.value;
     const jerseyImage = form.jerseyimage.value;
-    const pickupLocation = form.pickuplocation.value;
-    const expiredDate = startDate;
+    const price = form.price.value;
+    const addDate = startDate;
     const additionalNotes = form.additionalnotes.value;
-    const donatorName = form.name.value;
-    const donatorEmail = form.email.value;
-    const donatorImage = form.userimage.value;
     const jerseyStatus = form.jerseystatus.value;
     console.log(
       jerseyName,
-      jerseyQuantity,
+      m,
+      l,
+      xl,
+      xl2,
       jerseyImage,
-      pickupLocation,
-      expiredDate,
+      price,
+      addDate,
       additionalNotes,
-      donatorName,
-      donatorEmail,
-      donatorImage,
       jerseyStatus
     );
     const jersey = {
-      jerseyName,
-      jerseyQuantity,
+     jerseyName,
+      m,
+      l,
+      xl,
+      xl2,
       jerseyImage,
-      pickupLocation,
-      expiredDate,
+      price,
+      addDate,
       additionalNotes,
-      donatorName,
-      donatorEmail,
-      donatorImage,
-      jerseyStatus,
+      jerseyStatus
     };
 
     mutate(jersey);
@@ -107,13 +107,67 @@ const AddJersey = () => {
           <div className="form-control md:w-1/2 ">
             <label className="label">
               <span className="label-text text-xl font-medium">
-                Jersey Quantity :
+                M :
               </span>
             </label>
             <input
               type="text"
-              name="jerseyquantity"
-              placeholder="jersey Quantity"
+              name="m"
+              placeholder="quantity"
+              className="input w-full input-bordered bg-slate-200"
+            />
+          </div>
+          <div className="form-control md:w-1/2 ">
+            <label className="label">
+              <span className="label-text text-xl font-medium">
+                L :
+              </span>
+            </label>
+            <input
+              type="text"
+              name="l"
+              placeholder="quantity"
+              className="input w-full input-bordered bg-slate-200"
+            />
+          </div>
+          <div className="form-control md:w-1/2 ">
+            <label className="label">
+              <span className="label-text text-xl font-medium">
+                XL :
+              </span>
+            </label>
+            <input
+              type="text"
+              name="xl"
+              placeholder="quantity"
+              className="input w-full input-bordered bg-slate-200"
+            />
+          </div>
+          <div className="form-control md:w-1/2 ">
+            <label className="label">
+              <span className="label-text text-xl font-medium">
+                2XL :
+              </span>
+            </label>
+            <input
+              type="text"
+              name="xl2"
+              placeholder="quantity"
+              className="input w-full input-bordered bg-slate-200"
+            />
+          </div>
+        </div>
+        <div className=" flex flex-col md:flex-row gap-5 ">
+          <div className="form-control  md:w-1/2">
+            <label className="label">
+              <span className="label-text text-xl font-medium">
+                Price :
+              </span>
+            </label>
+            <input
+              type="text"
+              name="price"
+              placeholder="give an protable price"
               className="input w-full input-bordered bg-slate-200"
               required
             />
@@ -132,32 +186,16 @@ const AddJersey = () => {
               required
             />
           </div>
-        </div>
-        <div className=" flex flex-col md:flex-row gap-5 ">
-          <div className="form-control  md:w-1/2">
-            <label className="label">
-              <span className="label-text text-xl font-medium">
-                Pickup Location :
-              </span>
-            </label>
-            <input
-              type="text"
-              name="pickuplocation"
-              placeholder="Pickup Location"
-              className="input w-full input-bordered bg-slate-200"
-              required
-            />
-          </div>
           <div className="form-control md:w-1/2">
             <label className="label block">
               <span className="label-text text-xl font-medium">
-                Expired Date/Time :
+                Added Date :
               </span>
             </label>
             <DatePicker
               dateFormat="dd/MM/YYYY"
               className=" border  w-full light:border-gray-500 bg-slate-200 p-3 text-xl rounded-lg"
-              name="expiredDate"
+              name="addDate"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
             />
@@ -180,53 +218,9 @@ const AddJersey = () => {
             className=" w-full outline-none border bg-slate-200  light:border-gray-500 rounded-lg"
           ></textarea>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Donator Name :</span>
-            </label>
-            <input
-              type="text"
-              defaultValue={user.displayName}
-              name="name"
-              placeholder="User Name"
-              className="input input-bordered bg-slate-200"
-              required
-            />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Donator Email :</span>
-            </label>
-            <input
-              type="text"
-              defaultValue={user.email}
-              name="email"
-              placeholder="User Email"
-              className="input input-bordered bg-slate-200"
-              required
-            />
-          </div>
-
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Donator Image :</span>
-            </label>
-
-            <input
-              type="text"
-              defaultValue={user.photoURL}
-              name="userimage"
-              placeholder="User Image"
-              className="input input-bordered bg-slate-200"
-              required
-            />
-          </div>
-        </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text"> jersey Status :</span>
+            <span className="label-text">Jersey Status :</span>
           </label>
           <input
             type="text"
