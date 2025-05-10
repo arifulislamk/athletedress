@@ -18,7 +18,7 @@ const Navbar = () => {
     reloadPage();
   };
 
-  console.log(user, "user ache");
+  // console.log(user, "user ache");
 
   const links = (
     <>

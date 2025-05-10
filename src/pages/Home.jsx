@@ -7,7 +7,7 @@ import Slider from "../components/Slider";
 
 const Home = () => {
     const {user} = useContext(AuthContext) ;
-    console.log(user);
+    // console.log(user);
     return (
         <div>
             <Slider />

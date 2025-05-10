@@ -120,12 +120,10 @@ const Slider = () => {
                 Inter Milan Premium Quality Home Kit 24/25 Circle Nicks, Mesh
                 Febricks
                 </h2>
-                <p className=" text-2xl lg:text-4xl font-medium text-error ">
                 <p className=" text-2xl lg:text-3xl font-medium text-error ">
                   Regular Price : 550 Taka <br />
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
-                </p>
                 </p>
                 <Link to="/jerseyDetails/663f4a4e442329bb0c45555e">
                   <Slide cascade duration={3000} triggerOnce>
