@@ -20,11 +20,9 @@ const Slider = () => {
                 className="space-y-3 flex-1"
               >
                 <h2 className="font-poppins  text-xl  md:text-4xl font-bold">
-                  Inter Miami Premium Quality Away Jersey Circle Nicks, Mesh
-                  Febricks
+                  Bercelona Premium Quality Home Kit 24/25 Jersey Circle Nicks
                 </h2>
                 <p className=" text-2xl , md:text-xl font-medium text-error ">
-                  {" "}
                   Regular Price : 550 Taka <br />
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold text-2xl ">450 Taka</span>
@@ -55,8 +53,8 @@ const Slider = () => {
                 className="flex-1 relative"
               >
                 <img
-                  src="https://i.ibb.co.com/fY9ZH4KW/miami-black-font.jpg"
-                  className="w-[70%] rounded-2xl"
+                  src="https://i.ibb.co.com/tMJvNGmV/494816128-695283886691944-4772800413708119016-n.jpg"
+                  className="w-[60%] rounded-2xl"
                 />
               </motion.div>
             </div>
@@ -78,9 +76,7 @@ const Slider = () => {
             >
               <div className="space-y-7 flex-1">
                 <h2 className="font-poppins   text-xl  lg:text-4xl font-bold">
-                Real Madrid Premium Quality Home Jersey Circle Nicks, Mesh
-                Febricks
-                </h2>
+                Real Madrid Premium Quality Home Kit 24/25 Circle Nicks</h2>
                 <p className=" text-2xl lg:text-3xl font-medium text-error ">
                   Regular Price : 550 Taka <br />
                   Discount Price :{" "}
@@ -97,8 +93,8 @@ const Slider = () => {
               <div className="flex-1 relative">
                 <Slide direction="right" cascade delay={100} triggerOnce>
                   <img
-                    src="https://i.ibb.co.com/Y4RxZqpG/real-fonts.jpg"
-                    className="w-full rounded-2xl"
+                    src="https://i.ibb.co.com/Q74Kw3hk/Mens-Home-Authentic-Shirt-2425-White.webp"
+                    className="w-[72%] rounded-2xl"
                   />
                 </Slide>
               </div>
@@ -121,7 +117,7 @@ const Slider = () => {
             >
               <div className="space-y-7 flex-1">
                 <h2 className="font-poppins text-xl  lg:text-4xl font-bold">
-                Manchester United Premium Quality Home Jersey Circle Nicks, Mesh
+                Inter Milan Premium Quality Home Kit 24/25 Circle Nicks, Mesh
                 Febricks
                 </h2>
                 <p className=" text-2xl lg:text-4xl font-medium text-error ">
@@ -142,8 +138,8 @@ const Slider = () => {
               <div className="flex-1 relative">
                 <Slide direction="right" cascade delay={200} triggerOnce>
                   <img
-                    src="https://i.ibb.co.com/21PN39yc/man-uni.jpg"
-                    className="w-full rounded-2xl"
+                    src="https://i.ibb.co.com/jP0dtBXt/Inter-milan-home-2425-1.webp"
+                    className="w-[72%] rounded-2xl"
                   />
                 </Slide>
               </div>
