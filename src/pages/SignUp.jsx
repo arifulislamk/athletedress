@@ -2,55 +2,61 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
 import { useMutation } from "@tanstack/react-query";
 import useCommonAxios from "../hooks/useCommonAxios";
 import { toast } from "react-toastify";
+import useAuthFire from "../hooks/useAuthFire";
 
 const SignUp = () => {
-  const commonAxios = useCommonAxios() ;
+  const commonAxios = useCommonAxios();
+  const { createuser, updateUserProfile } = useAuthFire();
   const navigate = useNavigate();
-  const { register , handleSubmit } = useForm()
-  const { createuser } = useContext(AuthContext);
-
+  const { register, handleSubmit } = useForm();
 
   const { mutateAsync } = useMutation({
-    mutationFn : async (info) => {
-      const {data} = await commonAxios.post("/register",info) ;
-      console.log(data,"ddd")
-      if(data.token){
+    mutationFn: async (info) => {
+      const { data } = await commonAxios.post("/register", info);
+      console.log(data, "ddd");
+      if (data.token) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userType", data.usertype);
         localStorage.setItem("email", data.email);
       }
-      return data ;
+      return data;
     },
-    onSuccess : () => {
-      console.log("User create Succesfull")
+    onSuccess: () => {
+      console.log("User create Succesfull");
       toast.success("User Create Succesful");
       navigate("/");
-      location.reload()
-    }
-  })
-  const handleSignupBtn = data => {
-    const { name, email, password,number} = data ;
-    console.log(name, email, password)
+      location.reload();
+    },
+  });
+  const handleSignupBtn = (data) => {
+    const { name, email, password, number } = data;
+    console.log(name, email, password);
 
-      try {
-        const info = { name ,number, email, password , usertype: "Customer"} ;
-        mutateAsync(info)
-      } catch(err) {
-        console.log(err) ;
-      }
-
-      //  createuser(email, password)
-      //  .then( res => {
-      //   console.log(res.user,'Registration Done')
-      //  })
-      //  .catch(error => {
-      //   console.log(error) ;
-      //  })
-    }
+    createuser(email, password)
+      .then((res) => {
+        console.log(res.user, "Registration Done");
+        updateUserProfile(name).then(() => {
+          try {
+            const info = {
+              name,
+              number,
+              email,
+              password,
+              usertype: "Customer",
+            };
+            mutateAsync(info);
+          } catch (err) {
+            console.log(err);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -109,7 +115,7 @@ const SignUp = () => {
               <input
                 type="email"
                 name="email"
-                { ...register("email")}
+                {...register("email")}
                 required
                 placeholder="Enter Your Email Here"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
@@ -139,7 +145,7 @@ const SignUp = () => {
               type="submit"
               className="bg-rose-500 w-full rounded-md py-3 text-white"
             >
-                continue
+              continue
             </button>
           </div>
         </form>
@@ -150,9 +156,7 @@ const SignUp = () => {
           </p>
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
         </div>
-        <button
-          className=" disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
-        >
+        <button className=" disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer">
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>

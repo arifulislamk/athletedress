@@ -14,9 +14,7 @@ const Login = () => {
   const handleLoginBtn = async(data) => {
     const { emailornumber, password} = data ;
     console.log(emailornumber,password);
-
     const userinfo = { emailornumber, password };
-
     try {
       const { data } = await commonAxios.post("/login", userinfo);
       console.log(data);

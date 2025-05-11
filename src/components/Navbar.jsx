@@ -8,14 +8,16 @@ const Navbar = () => {
     const email = localStorage.getItem("email");
     const userType = localStorage.getItem("userType");
     const info = { email, userType };
-    setuser(info);
-    // console.log(info);
+    
+    if(email && userType) setuser(info);
+    console.log(info, "dfd");
   }, []);
 
+ console.log(user, "user")
   const logout = () => {
     localStorage.clear();
     setuser(false);
-    reloadPage();
+    location.reload()
   };
 
   // console.log(user, "user ache");
@@ -170,8 +172,10 @@ const Navbar = () => {
                       <p className=" border-b-2 border-black mb-4 text-center font-bold">
                         {user.displayName ? user.displayName : "Name Not Found"}
                       </p>
+                      <p className=" border-b-2 border-black mb-4 text-center font-bold">
+                        Email:{user.email ? user.email : "email Not Found"}
+                      </p>
                       <Link to="/profile">
-                        {" "}
                         <button className=" hover:underline">Profile</button>
                       </Link>
                       <button onClick={logout} className="hover:underline ">
