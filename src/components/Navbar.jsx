@@ -1,26 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import useAuthFire from "../hooks/useAuthFire";
 
 const Navbar = () => {
-  const [user, setuser] = useState();
+  const {user,logOut} = useAuthFire()
   const [showdropdown, setShowdropdown] = useState(false);
-  useEffect(() => {
-    const email = localStorage.getItem("email");
-    const userType = localStorage.getItem("userType");
-    const info = { email, userType };
-    
-    if(email && userType) setuser(info);
-    console.log(info, "dfd");
-  }, []);
 
- console.log(user, "user")
   const logout = () => {
-    localStorage.clear();
-    setuser(false);
-    location.reload()
+    logOut()
   };
 
-  // console.log(user, "user ache");
+  console.log(user, "user ache");
 
   const links = (
     <>

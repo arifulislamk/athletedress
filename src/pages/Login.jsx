@@ -1,56 +1,53 @@
-
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../provider/AuthProvider";
 import useCommonAxios from "../hooks/useCommonAxios";
 import { Link, useNavigate } from "react-router-dom";
+import useAuthFire from "../hooks/useAuthFire";
+import Swal from "sweetalert2";
 const Login = () => {
-  const commonAxios = useCommonAxios() ;
+  const commonAxios = useCommonAxios();
   const navigate = useNavigate();
-  const { register, handleSubmit} = useForm() ;
-  const {user,loginUser} = useContext(AuthContext) ;
-  console.log(user);
+  const { register, handleSubmit } = useForm();
+  const { user, loginUser } = useAuthFire();
+  // console.log(user);
 
-  const handleLoginBtn = async(data) => {
-    const { emailornumber, password} = data ;
-    console.log(emailornumber,password);
+  const handleLoginBtn = async (data) => {
+    const { emailornumber, password } = data;
+    console.log(emailornumber, password);
     const userinfo = { emailornumber, password };
-    try {
-      const { data } = await commonAxios.post("/login", userinfo);
-      console.log(data);
-      if (data.token) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userType", data.usertype);
-        localStorage.setItem("email", data.email);
-        // alert("Login successful");
-        navigate("/")
-        location.reload()
-      } else {
-        alert(data.message);
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-    // loginUser(email, password)
-    // .then(res => {
-    //   console.log(res.user);
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // })
-  }
+
+    loginUser(emailornumber, password)
+      .then((res) => {
+        console.log(res.user);
+        Swal.fire({
+          title: "Login Success",
+          text: "Do you want to continue",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className=" justify-center flex">
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800">
         <h1 className="text-2xl font-bold text-center">Login</h1>
-        <form onSubmit={handleSubmit(handleLoginBtn)} noValidate="" action="" className="space-y-6">
+        <form
+          onSubmit={handleSubmit(handleLoginBtn)}
+          noValidate=""
+          action=""
+          className="space-y-6"
+        >
           <div className="space-y-1 text-sm">
             <label htmlFor="username" className="block dark:text-gray-600">
               Email / Number
             </label>
             <input
               type="text"
-              { ...register("emailornumber")}
+              {...register("emailornumber")}
               name="emailornumber"
               placeholder="emailornumber"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"

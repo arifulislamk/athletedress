@@ -13,7 +13,7 @@ const FeaturesJercy = () => {
     },
   });
 
-  console.log(jerseys, "1111");
+  // console.log(jerseys, "1111");
   if (isLoading) {
     return (
       <div className=" mt-6 flex justify-center">
