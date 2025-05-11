@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import useCommonAxios from "../hooks/useCommonAxios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuthFire from "../hooks/useAuthFire";
 import Swal from "sweetalert2";
 const Login = () => {
   const commonAxios = useCommonAxios();
   const navigate = useNavigate();
+  const location = useLocation();
   const { register, handleSubmit } = useForm();
   const { user, loginUser } = useAuthFire();
   // console.log(user);

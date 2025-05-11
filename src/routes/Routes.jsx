@@ -9,6 +9,7 @@ import AddJersey from "../pages/AddJersey";
 import AllStock from "../pages/AllStock";
 import DashBoard from "../pages/DashBoard";
 import JerseyDetails from "../pages/JerseyDetails";
+import HiddenRoutes from "./HiddenRoutes";
 
 const router = createBrowserRouter([
     {
@@ -37,15 +38,15 @@ const router = createBrowserRouter([
         },
         {
           path: "addJersey",
-          element: <AddJersey />
+          element: <HiddenRoutes><AddJersey /></HiddenRoutes>
         },
         {
           path: "/allStock",
-          element: <AllStock />
+          element: <HiddenRoutes><AllStock /></HiddenRoutes>
         },
         {
           path: "/dashboard",
-          element: <DashBoard />
+          element: <HiddenRoutes><DashBoard /></HiddenRoutes>
         },
         {
           path: "/jerseyDetails/:id",

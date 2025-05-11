@@ -12,19 +12,25 @@ import { app } from "../firebase/firebase.config";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const auth = getAuth(app);
+  const [loading, setLoading] = useState(true);
+
   const createuser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const updateUserProfile = (name) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
     });
   };
   const logOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -32,6 +38,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       //   console.log(currentUser, "currentUser");
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -42,7 +49,8 @@ const AuthProvider = ({ children }) => {
     createuser,
     loginUser,
     updateUserProfile,
-    logOut
+    logOut,
+    loading,
   };
   return (
     <AuthContext.Provider value={providerInfo}>{children}</AuthContext.Provider>
