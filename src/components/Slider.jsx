@@ -29,9 +29,9 @@ const Slider = () => {
                 </p>
                 <div className=" flex gap-10 items-center">
                   <div>
-                    <Link to="/jerseyDetails/681c4e89461c0c23d72e9ace">
+                    <Link to="/jerseyDetails/681f8ce48523b1e91b92fe13">
                       <Slide triggerOnce>
-                        <button className="btn lg:mt-10 bg-orange-400  text-white">
+                        <button className="btn lg:mt-10 text-white w-20 font-bold bg-cyan-500 rounded-xl p-1">
                           View Details
                         </button>
                       </Slide>
@@ -82,9 +82,9 @@ const Slider = () => {
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
                 </p>
-                <Link to="/jerseyDetails/681b82fa04c7421a46f69c11">
+                <Link to="/jerseyDetails/68209700402b4ebeb420a4da">
                   <Slide triggerOnce>
-                    <button className="btn lg:mt-10 bg-orange-400  text-white">
+                    <button className="btn lg:mt-10  text-white text-xl font-medium bg-cyan-500 rounded-xl p-2">
                       View Details
                     </button>
                   </Slide>
@@ -125,9 +125,9 @@ const Slider = () => {
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
                 </p>
-                <Link to="/jerseyDetails/663f4a4e442329bb0c45555e">
+                <Link to="/jerseyDetails/681f8e5b8523b1e91b92fe16">
                   <Slide cascade duration={3000} triggerOnce>
-                    <button className="btn lg:mt-10 bg-orange-400  text-white">
+                    <button className="btn lg:mt-10 text-white text-xl font-bold bg-cyan-500 rounded-xl p-2">
                       View Details
                     </button>
                   </Slide>

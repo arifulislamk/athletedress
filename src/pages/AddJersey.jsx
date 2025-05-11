@@ -232,7 +232,7 @@ const AddJersey = () => {
           />
         </div>
         <div className="form-control mt-6">
-          <button className="btn bg-orange-400  ">Add Jersey</button>
+          <button className="btn  text-white text-xl font-bold bg-cyan-800 rounded-xl p-2  ">Add Jersey</button>
         </div>
       </form>
       <ToastContainer />

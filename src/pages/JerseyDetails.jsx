@@ -109,23 +109,23 @@ const JerseyDetails = () => {
                 </div>
                 <div className=" flex gap-6">
                   <div className="flex divide-x-2 rounded text-gray-100 dark:text-gray-800 divide-gray-700 dark:divide-gray-300">
-                    <button onClick={handleDicrement} className="px-3 py-1">
+                    <button onClick={handleDicrement} className="px-3 font-bold text-xl py-1">
                       -
                     </button>
-                    <button type="button" className="px-3 py-1">
+                    <button type="button" className="px-3 font-semibold text-xl py-1">
                       {count}
                     </button>
                     <button
                       onClick={() => setCount(count + 1)}
                       type="button"
-                      className="px-3 py-1"
+                      className="px-3 font-bold text-xl py-1"
                     >
                       +
                     </button>
                   </div>
-                  <button className=" text-xl bg-cyan-500 rounded-xl p-2 font-medium">Add Cart</button>
+                  <button className=" text-xl font-bold bg-cyan-500 rounded-xl p-2">Add Cart</button>
                 </div>
-                <button className=" bg-green-600 font-bold p-3 rounded-lg ">BUY NOW</button>
+                <button className=" bg-green-600 text-xl font-bold p-3 rounded-lg ">BUY NOW</button>
               </div>
             </div>
         </div>

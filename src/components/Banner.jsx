@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "./styles.css";
 const Banner = () => {
   return (
-    <div className=" mt-10">
+    <div className=" mt-10 p-4 border-2 border-cyan-300">
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
