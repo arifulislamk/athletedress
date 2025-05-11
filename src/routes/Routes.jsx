@@ -10,11 +10,13 @@ import AllStock from "../pages/AllStock";
 import DashBoard from "../pages/DashBoard";
 import JerseyDetails from "../pages/JerseyDetails";
 import HiddenRoutes from "./HiddenRoutes";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
       path: "/", 
       element: <Main />,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",

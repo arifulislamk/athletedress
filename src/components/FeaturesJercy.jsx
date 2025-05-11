@@ -34,7 +34,7 @@ const FeaturesJercy = () => {
           transition={{ delay: 0.001, type: "spring", stiffness: 120 }}
           className=" grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5"
         >
-          {jerseys?.map((jersey) => { 
+          {jerseys?.slice(0, 6).map((jersey) => { 
             const jerseyQuantity = parseInt(jersey.m) + parseInt(jersey.l) +parseInt(jersey.xl) +parseInt(jersey.xl2);
             return (
             <div
