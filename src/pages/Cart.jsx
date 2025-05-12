@@ -2,7 +2,7 @@ import React from "react";
 
 const Cart = () => {
   return (
-    <div className=" border border-red-500">
+    <div className=" flex flex-col md:flex-row gap-5 border border-red-500 ">
       <div className="flex flex-col border border-red-500 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
@@ -16,7 +16,7 @@ const Cart = () => {
               <div className="flex flex-col justify-between w-full pb-4">
                 <div className="flex justify-between w-full pb-2 space-x-2">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold leading-snug sm:pr-8">
+                    <h3 className="text-sm font-semibold leading-snug sm:pr-8">
                       UCL MEN'S HOME JERSEY 24/25 FC BARCELONA - REGULAR
                     </h3>
                     <p className="text-sm dark:text-gray-600">Classic</p>
@@ -73,8 +73,8 @@ const Cart = () => {
               <div className="flex flex-col justify-between w-full pb-4">
                 <div className="flex justify-between w-full pb-2 space-x-2">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold leading-snug sm:pr-8">
-                     UCL MEN'S AWAY JERSEY 24/25 FC BARCELONA  - REGULAR
+                    <h3 className="text-sm font-semibold leading-snug sm:pr-8">
+                      UCL MEN'S AWAY JERSEY 24/25 FC BARCELONA - REGULAR
                     </h3>
                     <p className="text-sm dark:text-gray-600">White</p>
                   </div>
@@ -130,8 +130,9 @@ const Cart = () => {
               <div className="flex flex-col justify-between w-full pb-4">
                 <div className="flex justify-between w-full pb-2 space-x-2">
                   <div className="space-y-1">
-                    <h3 className="text-lg font-semibold leading-snug sm:pr-8">
-                     IINTER MILAN NIKE MEN'S HOME MATCH JERSEY 2024/25 - REGULAR
+                    <h3 className="text-sm font-semibold leading-snug sm:pr-8">
+                      IINTER MILAN NIKE MEN'S HOME MATCH JERSEY 2024/25 -
+                      REGULAR
                     </h3>
                     <p className="text-sm dark:text-gray-600">Black</p>
                   </div>
@@ -178,6 +179,85 @@ const Cart = () => {
             </div>
           </li>
         </ul>
+      </div>
+      <div>
+        <div>
+          <section className="p-6 dark:bg-gray-100 dark:text-gray-900">
+            <form
+              noValidate=""
+              action=""
+              className="container flex flex-col mx-auto  "
+            >
+              <fieldset className="p-2 rounded-md shadow-sm  dark:bg-gray-50">
+                <div className="space-y-2 mb-4 col-span-full lg:col-span-1">
+                  <p className="font-medium md:text-xl">Personal Inormation</p>
+                  <p className="text-xs md:text-xl ">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Adipisci fuga autem eum!
+                  </p>
+                </div>
+                <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                  <div className="col-span-full sm:col-span-3">
+                    <label htmlFor="firstname" className="text-sm md:text-xl md:font-medium">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="First name"
+                      className="w-full md:p-3 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-3">
+                    <label htmlFor="number" className="text-sm md:text-xl md:font-medium">
+                      Phone
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Phone"
+                      className="w-full md:p-3 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    />
+                  </div>
+                  <div className="col-span-full sm:col-span-3">
+                    <label htmlFor="email" className="text-sm md:text-xl md:font-medium">
+                      Email
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      className="w-full md:p-3 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    />
+                  </div>
+
+                  <div className="col-span-full sm:col-span-3">
+                    <label htmlFor="city" className="text-sm md:text-xl md:font-medium">
+                      City
+                    </label>
+                    <input
+                      id="city"
+                      type="text"
+                      placeholder="city"
+                      className="w-full md:p-3 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    />
+                  </div>
+                  <div className="col-span-full">
+                    <label htmlFor="address" className=" md:text-xl md:font-medium ">
+                      Address
+                    </label>
+                    <input
+                      id="address"
+                      type="text"
+                      placeholder="address"
+                      className="w-full md:p-3 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300"
+                    />
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </section>
+        </div>
+        {/* // cheekout to payment */}
         <div className="space-y-1 text-right">
           <p>
             Total amount:
