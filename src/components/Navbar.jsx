@@ -1,13 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAuthFire from "../hooks/useAuthFire";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
-  const {user,logOut} = useAuthFire()
+  const { user, logOut } = useAuthFire();
   const [showdropdown, setShowdropdown] = useState(false);
 
   const logout = () => {
-    logOut()
+    logOut();
   };
 
   console.log(user, "user ache");
@@ -40,7 +41,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
+    <>
       <div className="navbar text-cyan-950 shadow-lg bg-slate-300">
         <div className="navbar-start">
           <div className="dropdown">
@@ -80,20 +81,8 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal text-xl px-1">
-            {links}
-            {/* <li>
-              <Link to={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link to={"/newArrival"}>New Arrival</Link>
-            </li>
-            <li>
-              <Link to={"/contactUs"}>Contact Us</Link>
-            </li> */}
-          </ul>
+          <ul className="menu menu-horizontal text-xl px-1">{links}</ul>
         </div>
-        <div></div>
         <div className="navbar-end">
           <div className=" lg:mr-5">
             <label className="flex cursor-pointer md:gap-2">
@@ -133,6 +122,12 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
+          <Link to="/cart">
+            <button className="btn mr-2 rounded-full btn-sm">
+              <FaShoppingCart className="" />
+              <div className="badge badge-secondary w-4 ">+1</div>
+            </button>
+          </Link>
           {user ? (
             <>
               {user && (
@@ -150,37 +145,43 @@ const Navbar = () => {
                       />
                     ) : (
                       <img
-                        className="lg:h-12 w-10 md:w-[50px] rounded-3xl "
-                        src='https://i.ibb.co.com/5gQKsL1m/images.jpg'
+                        className="lg:h-14 w-10 md:w-[58px] rounded-full "
+                        src="https://i.ibb.co.com/5gQKsL1m/images.jpg"
                         alt=""
                       />
                     )}
                   </div>
 
                   {showdropdown && (
-                    <div className="flex flex-col absolute left-[20%] md:left-[70%] lg:left-[80%]  lg:right-2  bg-blue-300 w-52 shadow-md p-5 rounded-md">
+                    <div className="flex flex-col absolute left-[20%] md:left-[70%] lg:left-[86%]  lg:right-2  bg-blue-300 w-52 shadow-md p-5 rounded-md">
                       <p className=" border-b-2 border-black mb-4 text-center font-bold">
                         {user.displayName ? user.displayName : "Name Not Found"}
                       </p>
-                      <p className=" border-b-2 border-black mb-4 text-center font-bold">
-                        Email:{user.email ? user.email : "email Not Found"}
+                      <p className=" border-b-2 border-black mb-4 text-center font-semibold">
+                        {user.email ? user.email : "email Not Found"}
                       </p>
                       <Link to="/profile">
                         <button className=" hover:underline">Profile</button>
                       </Link>
-                      <button onClick={logout} className="hover:underline ">
+                      <Link to="/cart">
+                        <button className=" hover:underline">My Cart</button>
+                      </Link>
+                      <Link to="/purchaseHistory">
+                        <button className=" hover:underline">Purchase History</button>
+                      </Link>
+                      <button onClick={logout} className="hover:underline mt-2 md:mt-4 font-bold bg-red-500 md:w-36 rounded-xl text-white ">
                         LogOut
                       </button>
                     </div>
                   )}
                 </div>
               )}
-              <button
+              {/* <button
                 onClick={logout}
                 className="btn  btn-xs md:btn-md  text-white text-xl font-medium bg-cyan-500 rounded-xl  "
               >
                 LogOut
-              </button>
+              </button> */}
             </>
           ) : (
             <>
@@ -191,7 +192,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

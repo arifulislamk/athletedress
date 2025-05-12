@@ -10,13 +10,12 @@ import AllStock from "../pages/AllStock";
 import DashBoard from "../pages/DashBoard";
 import JerseyDetails from "../pages/JerseyDetails";
 import HiddenRoutes from "./HiddenRoutes";
-import ErrorPage from "../pages/ErrorPage";
+import Cart from "../pages/Cart";
 
 const router = createBrowserRouter([
     {
       path: "/", 
       element: <Main />,
-      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
@@ -43,6 +42,11 @@ const router = createBrowserRouter([
           element: <HiddenRoutes><AddJersey /></HiddenRoutes>
         },
         {
+          path: "/jerseyDetails/:id",
+          element: <JerseyDetails />,
+          loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/jerseyDetails/${params.id}`)
+        },
+        {
           path: "/allStock",
           element: <HiddenRoutes><AllStock /></HiddenRoutes>
         },
@@ -51,10 +55,9 @@ const router = createBrowserRouter([
           element: <HiddenRoutes><DashBoard /></HiddenRoutes>
         },
         {
-          path: "/jerseyDetails/:id",
-          element: <JerseyDetails />,
-          loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/jerseyDetails/${params.id}`)
-        },
+          path: "/cart",
+          element: <Cart />
+        }
       ]
     },
   ])
