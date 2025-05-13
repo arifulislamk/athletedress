@@ -14,7 +14,7 @@ const Footer = () => {
                 /> */}
                 <img
                   className="w-36 border-2 border-cyan-400 rounded-md"
-                  src="/src/assets/logo.jpg"
+                  src="/logo.jpg"
                   alt=""
                 />
               </Link>

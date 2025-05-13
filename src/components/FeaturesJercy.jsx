@@ -14,14 +14,14 @@ const FeaturesJercy = () => {
   });
 
   // console.log(jerseys, "1111");
-  if (isLoading) {
+  if (isLoading || !jerseys) {
     return (
       <div className=" mt-6 flex justify-center">
         <span className="loading w-20 text-yellow-400 loading-spinner "></span>
       </div>
     );
   }
-  const quantity = jerseys.reduce((sum, jersey) => sum + jersey.m + jersey.l + jersey.xl + jersey.xl2, 0);
+  const quantity = jerseys?.reduce((sum, jersey) => sum + jersey?.m + jersey?.l + jersey?.xl + jersey?.xl2, 0);
   return (
     <div className="border mt-10 rounded-lg">
       <h2 className="font-poppins font-medium  text-center text-2xl md:text-3xl  lg:text-5xl mb-10">
@@ -35,30 +35,30 @@ const FeaturesJercy = () => {
           className=" grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5"
         >
           {jerseys?.slice(0, 6).map((jersey) => { 
-            const jerseyQuantity = parseInt(jersey.m) + parseInt(jersey.l) +parseInt(jersey.xl) +parseInt(jersey.xl2);
+            const jerseyQuantity = parseInt(jersey?.m) + parseInt(jersey?.l) +parseInt(jersey?.xl) +parseInt(jersey?.xl2);
             return (
             <div
-              key={jersey._id}
+              key={jersey?._id}
               className="card font-open-sans card-compact text-cyan-950 bg-slate-300 shadow-md"
             >
               <div className="w-[100] mx-auto m-1">
                 <img
                   className=" rounded-lg  w-96 h-96 object-cover  "
-                  src={jersey.jerseyImage}
-                  alt={jersey.jerseyName}
+                  src={jersey?.jerseyImage}
+                  alt={jersey?.jerseyName}
                 />
               </div>
               <div className="card-body space-y-3">
                 <h2 className="font-poppins font-bold card-title">
-                  {jersey.jerseyName}
+                  {jersey?.jerseyName}
                 </h2>
 
                 <div className="card-actions text-xl mt-14 justify-between items-center ">
                   <p> Quantity : {jerseyQuantity}</p>
                   <p>
-                    Price : <span className=" font-bold">{jersey.price}</span>
+                    Price : <span className=" font-bold">{jersey?.price}</span>
                   </p>
-                  <Link to={`/jerseyDetails/${jersey._id}`}>
+                  <Link to={`/jerseyDetails/${jersey?._id}`}>
                       <button className=" bg-green-500 text-cyan-50 text-xl font-bold p-2 rounded-lg ">BUY NOW</button>
                   </Link>
                 </div>

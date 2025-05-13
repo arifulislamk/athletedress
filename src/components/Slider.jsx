@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 
-import animation2 from "../assets/Animation - 1746686798758.json";
+import animation2 from "../../public/animation.json";
 
 const Slider = () => {
   return (

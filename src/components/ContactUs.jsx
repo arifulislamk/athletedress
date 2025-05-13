@@ -13,11 +13,6 @@ const ContactUs = () => {
               Vivamus in nisl metus? Phasellus.
             </div>
           </div>
-          <img
-            src="assets/svg/doodle.svg"
-            alt=""
-            className="p-6 h-52 md:h-64"
-          />
         </div>
         <form noValidate="" className="space-y-6">
           <div>
