@@ -52,7 +52,7 @@ const JerseyDetails = () => {
       toast.success("cart Succesful");
     },
   });
-  const handleBuy = (data) => {
+  const handleBuy = async(data,action = "buy") => {
     const { _id, ...restjerseys } = jerseys;
     const jersey = {
       ...restjerseys,
@@ -61,8 +61,20 @@ const JerseyDetails = () => {
       size: data.size,
       count: count
     };
-    mutateAsync(jersey)
-    console.log("buy okkk",data.size,count, jersey);
+    // mutateAsync(jersey)
+    // console.log("buy okkk",data.size,count, jersey);
+     try {
+    await mutateAsync(jersey);
+    toast.success(
+      action === "buy" ? "Proceeding to checkout..." : "Added to cart"
+    );
+
+    if (action === "buy") {
+      navigate("/cart"); // replace with your desired route
+    }
+  } catch (err) {
+    toast.error("Action failed");
+  }
   };
   return (
     <div className="font-open-sans space-y-5 mx-4 lg:mx-12 ">
@@ -120,7 +132,7 @@ const JerseyDetails = () => {
                     +
                   </button>
                 </div>
-                <button type="button" className=" text-xl font-bold bg-cyan-500 rounded-xl p-2">
+                <button className=" text-xl font-bold bg-cyan-500 rounded-xl p-2">
                   Add Cart
                 </button>
               </div>
@@ -128,6 +140,7 @@ const JerseyDetails = () => {
               <div>
                 <button
                   type="submit"
+                  onClick={handleSubmit((data) => handleBuy(data, "buy"))}
                   className=" bg-green-600 text-xl font-bold p-3 rounded-lg "
                 >
                   BUY NOW
