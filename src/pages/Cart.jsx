@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Cart = () => {
+  const {pathname} = useLocation()
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, [pathname]);
   return (
-    <div className=" flex flex-col md:flex-row gap-5 p-2 md:p-20 border border-red-500 ">
-      <div className="flex flex-col border border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
+    <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 py-10 border border-red-500 ">
+      <div className="flex flex-col border rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
           <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
@@ -182,7 +187,7 @@ const Cart = () => {
       </div>
       <div>
         <div>
-          <section className="p-6 dark:bg-gray-100 dark:text-gray-900">
+          <section className="p-6 rounded-md dark:bg-gray-100 dark:text-gray-900">
             <form
               noValidate=""
               action=""

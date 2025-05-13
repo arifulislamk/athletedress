@@ -2,16 +2,27 @@ import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useAuthFire from "../hooks/useAuthFire";
 import { FaShoppingCart } from "react-icons/fa";
+import useCommonAxios from "../hooks/useCommonAxios";
 
 const Navbar = () => {
   const { user, logOut } = useAuthFire();
   const [showdropdown, setShowdropdown] = useState(false);
-
+  const commonAxios = useCommonAxios()
   const logout = () => {
     logOut();
   };
-
-  console.log(user, "user ache");
+console.log(user?.email, "ccarts pailam");
+  const [carts, setcarts] = useState([]);
+  useEffect(() => {
+     if (!user?.email) return;
+    const getData = async () => {
+      const { data } = await commonAxios(`/carts/${user?.email}`);
+      console.log(data, "data get");
+      setcarts(data);
+    };
+    getData();
+  }, [user?.email]);
+  console.log(carts,user?.email, "ccartsss pailam");
 
   const links = (
     <>
@@ -125,7 +136,7 @@ const Navbar = () => {
           <Link to="/cart">
             <button className="btn mr-2 rounded-full btn-sm">
               <FaShoppingCart className="" />
-              <div className="badge badge-secondary w-4 ">+1</div>
+              <div className="badge badge-secondary w-4 ">+{carts?.length}</div>
             </button>
           </Link>
           {user ? (
@@ -167,9 +178,14 @@ const Navbar = () => {
                         <button className=" hover:underline">My Cart</button>
                       </Link>
                       <Link to="/purchaseHistory">
-                        <button className=" hover:underline">Purchase History</button>
+                        <button className=" hover:underline">
+                          Purchase History
+                        </button>
                       </Link>
-                      <button onClick={logout} className="hover:underline mt-2 md:mt-4 font-bold bg-red-500 md:w-36 rounded-xl text-white ">
+                      <button
+                        onClick={logout}
+                        className="hover:underline mt-2 md:mt-4 font-bold bg-red-500 md:w-36 rounded-xl text-white "
+                      >
                         LogOut
                       </button>
                     </div>

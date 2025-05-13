@@ -48,8 +48,8 @@ const JerseyDetails = () => {
       return data;
     },
     onSuccess: () => {
-      console.log("cart add");
-      toast.success("cart Succesful");
+      // console.log("cart add");
+      toast.success("cart added Succesful");
     },
   });
   const handleBuy = async(data,action = "buy") => {
@@ -65,13 +65,11 @@ const JerseyDetails = () => {
     // console.log("buy okkk",data.size,count, jersey);
      try {
     await mutateAsync(jersey);
-    toast.success(
-      action === "buy" ? "Proceeding to checkout..." : "Added to cart"
-    );
-
     if (action === "buy") {
       navigate("/cart"); // replace with your desired route
     }
+    
+      location.reload()
   } catch (err) {
     toast.error("Action failed");
   }
