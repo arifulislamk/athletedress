@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useCommonAxios from "../hooks/useCommonAxios";
 import useAuthFire from "../hooks/useAuthFire";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const Cart = () => {
   const { user } = useAuthFire();
@@ -20,15 +22,43 @@ const Cart = () => {
     };
     getData();
   }, [user?.email]);
+  const handleDeleteCart = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("delete", _id);
+        axios
+          .delete(`${import.meta.env.VITE_API_URL}/allcartsdelete/${_id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              const remeningCart = carts.filter((cart) => cart._id !== _id);
+              setcarts(remeningCart);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   console.log(carts, user?.email, "cartsss pailam");
   return (
     <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 py-10 border border-red-500 ">
-      <div className="flex flex-col border rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
+      <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
           {carts?.map((cart) => (
             <>
-              {" "}
               <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
                 <div className="flex w-full space-x-2 sm:space-x-4">
                   <img
@@ -45,7 +75,9 @@ const Cart = () => {
                         <p className="text-sm dark:text-gray-600">Classic</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-lg font-semibold">{cart?.price} Taka</p>
+                        <p className="text-lg font-semibold">
+                          {cart?.price} Taka
+                        </p>
                         <p className="text-sm line-through dark:text-gray-400">
                           600
                         </p>
@@ -54,6 +86,7 @@ const Cart = () => {
                     <div className="flex text-sm divide-x">
                       <button
                         type="button"
+                        onClick={() => handleDeleteCart(cart._id)}
                         className="flex items-center px-2 py-1 pl-0 space-x-1"
                       >
                         <svg
