@@ -11,7 +11,6 @@ const Navbar = () => {
   const logout = () => {
     logOut();
   };
-console.log(user?.email, "ccarts pailam");
   const [carts, setcarts] = useState([]);
   useEffect(() => {
      if (!user?.email) return;
