@@ -16,12 +16,12 @@ const Navbar = () => {
      if (!user?.email) return;
     const getData = async () => {
       const { data } = await commonAxios(`/carts/${user?.email}`);
-      console.log(data, "data get");
+      // console.log(data, "data get");
       setcarts(data);
     };
     getData();
   }, [user?.email]);
-  console.log(carts,user?.email, "ccartsss pailam");
+  // console.log(carts,user?.email, "ccartsss pailam");
 
   const links = (
     <>
@@ -132,12 +132,14 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          <Link to="/cart">
+          {
+            carts.length > 0 && <Link to="/cart">
             <button className="btn mr-2 rounded-full btn-sm">
               <FaShoppingCart className="" />
               <div className="badge badge-secondary w-4 ">+{carts?.length}</div>
             </button>
           </Link>
+          }
           {user ? (
             <>
               {user && (

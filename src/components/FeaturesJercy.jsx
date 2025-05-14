@@ -67,7 +67,7 @@ const FeaturesJercy = () => {
           )})} 
         </motion.div>
         <div className=" text-center mt-10">
-          <Link to="/availablejerseys">
+          <Link to="/newArrival">
             <button className="btn text-white text-xl font-medium bg-cyan-600 rounded-xl p-2 ">Show All</button>
           </Link>
         </div>
