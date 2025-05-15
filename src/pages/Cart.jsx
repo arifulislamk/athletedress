@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useCommonAxios from "../hooks/useCommonAxios";
 import useAuthFire from "../hooks/useAuthFire";
 import Swal from "sweetalert2";
@@ -8,6 +8,7 @@ import axios from "axios";
 const Cart = () => {
   const { user } = useAuthFire();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const commonAxios = useCommonAxios();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,6 +20,9 @@ const Cart = () => {
       const { data } = await commonAxios(`/carts/${user?.email}`);
       console.log(data, "data get");
       setcarts(data);
+      if (!data || data?.length == 0) {
+        navigate("/newArrival");
+      }
     };
     getData();
   }, [user?.email]);
@@ -37,7 +41,7 @@ const Cart = () => {
         axios
           .delete(`${import.meta.env.VITE_API_URL}/allcartsdelete/${_id}`)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.deletedCount > 0) {
               const remeningCart = carts.filter((cart) => cart._id !== _id);
               setcarts(remeningCart);
@@ -47,11 +51,22 @@ const Cart = () => {
                 icon: "success",
               });
             }
+            location.reload();
           });
       }
     });
   };
+
+  // console.log(carts?.length, "ksdfssdfs");
+  // if (carts?.length == 0 && carts?.length !== undefined)
   console.log(carts, user?.email, "cartsss pailam");
+   if ( carts?.length < 1 || !carts) {
+    return (
+      <div className=" mt-6 flex justify-center">
+        <span className="loading w-20 text-yellow-400 loading-spinner "></span>
+      </div>
+    );
+  }
   return (
     <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 py-10 border border-red-500 ">
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
