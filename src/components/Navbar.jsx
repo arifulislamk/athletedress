@@ -55,10 +55,10 @@ const Navbar = () => {
       <div className="navbar text-cyan-950 shadow-lg bg-slate-300">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="btn w-6 p-0 btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-8 w-10"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -74,19 +74,19 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content text-cyan-950 bg-slate-300 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           </div>
           <div>
             <img
-              className="w-36 border-2 border-cyan-400 rounded-md"
+              className="w-36 hidden md:block border-2 border-cyan-400 rounded-md"
               src="/logo.jpg"
               alt=""
             />
           </div>
-          <Link to={"/"} className="btn btn-ghost text-xl">
+          <Link to={"/"} className="md:py-1 px-2 btn-ghost md:text-xl">
             AthleteDress
           </Link>
         </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal text-xl px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <div className=" lg:mr-5">
+          <div className=" hidden md:block lg:mr-5">
             <label className="flex cursor-pointer md:gap-2">
               <svg
                 className="hidden md:inline-block"
@@ -133,10 +133,10 @@ const Navbar = () => {
             </label>
           </div>
           {
-            carts.length > 0 && <Link to="/cart">
-            <button className="btn mr-2 rounded-full btn-sm">
+            carts?.length > 0 && <Link to="/cart">
+            <button className="btn w-10 p-0 h-10 mr-0.5 md:mr-2 rounded-full btn-sm">
               <FaShoppingCart className="" />
-              <div className="badge badge-secondary w-4 ">+{carts?.length}</div>
+              <div className="">+{carts?.length}</div>
             </button>
           </Link>
           }
@@ -151,13 +151,13 @@ const Navbar = () => {
                   <div>
                     {user?.photoURL ? (
                       <img
-                        className="lg:h-12 w-10 md:w-[50px] rounded-3xl "
-                        src={user.photoURL}
+                        className="h-12 w-12 md:w-[58px] rounded-full "
+                        src={user?.photoURL}
                         alt=""
                       />
                     ) : (
                       <img
-                        className="lg:h-14 w-10 md:w-[58px] rounded-full "
+                        className="h-12 md:h-14 w-12 md:w-[58px] rounded-full "
                         src="https://i.ibb.co.com/5gQKsL1m/images.jpg"
                         alt=""
                       />
@@ -167,10 +167,10 @@ const Navbar = () => {
                   {showdropdown && (
                     <div className="flex flex-col absolute left-[20%] md:left-[70%] lg:left-[86%]  lg:right-2  bg-blue-300 w-52 shadow-md p-5 rounded-md">
                       <p className=" border-b-2 border-black mb-4 text-center font-bold">
-                        {user.displayName ? user.displayName : "Name Not Found"}
+                        {user?.displayName ? user?.displayName : "Name Not Found"}
                       </p>
                       <p className=" border-b-2 border-black mb-4 text-center font-semibold">
-                        {user.email ? user.email : "email Not Found"}
+                        {user?.email ? user?.email : "email Not Found"}
                       </p>
                       <Link to="/profile">
                         <button className=" hover:underline">Profile</button>
