@@ -73,7 +73,7 @@ const Cart = () => {
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
-          {carts?.map((cart) => <EachCart key={cart?.id} cart={cart} />)}
+          {carts?.map((cart) => <EachCart key={cart?.id} cart={cart} handleDeleteCart={handleDeleteCart} />)}
         </ul>
       </div>
       <div>

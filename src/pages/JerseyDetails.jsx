@@ -25,10 +25,10 @@ const JerseyDetails = () => {
 
   const { id } = useParams();
   // // const intId = parseInt(id)
-  // console.log(jerseys, id, "dfdfs");
+  // console.log(jerseys, id, "dfdfss");
   // const spots = jerseys.find(spot => spot._id == id);
 
-  const { _id, jerseyName, price, jerseyImage, expiredDate, additionalNotes } =
+  const { _id, jerseyName,productId, price, jerseyImage, expiredDate, additionalNotes } =
     jerseys;
 
   const [count, setCount] = useState(1);
@@ -59,7 +59,8 @@ const JerseyDetails = () => {
       cartaddDate: startDate,
       purchaseEmail: user.email,
       size: data.size,
-      count: count
+      count: count,
+      productId: productId,
     };
     // mutateAsync(jersey)
     // console.log("buy okkk",data.size,count, jersey);

@@ -17,11 +17,11 @@ const AddJersey = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const commonAxios = useCommonAxios()
+  const commonAxios = useCommonAxios();
 
   const { mutate } = useMutation({
     mutationFn: async (jersey) => {
-      return await commonAxios.post('/alljerseys', jersey);
+      return await commonAxios.post("/alljerseys", jersey);
     },
     onSuccess: () => {
       navigate("/allStock");
@@ -40,6 +40,7 @@ const AddJersey = () => {
     event.preventDefault();
     const form = event.target;
     const jerseyName = form.jerseyname.value;
+    const productId = form.id.value;
     const m = form.m.value;
     const l = form.l.value;
     const xl = form.xl.value;
@@ -51,6 +52,7 @@ const AddJersey = () => {
     const jerseyStatus = form.jerseystatus.value;
     console.log(
       jerseyName,
+      productId,
       m,
       l,
       xl,
@@ -62,7 +64,8 @@ const AddJersey = () => {
       jerseyStatus
     );
     const jersey = {
-     jerseyName,
+      jerseyName,
+      productId,
       m,
       l,
       xl,
@@ -71,7 +74,7 @@ const AddJersey = () => {
       price,
       addDate,
       additionalNotes,
-      jerseyStatus
+      jerseyStatus,
     };
 
     mutate(jersey);
@@ -89,26 +92,55 @@ const AddJersey = () => {
         <h2 className="font-poppins font-medium  text-2xl lg:text-5xl text-center ">
           Add Jersey
         </h2>
-        <div className="form-control">
+        <div className="flex gap-4">
+          <div className="form-control w-1/2 ">
+            <label className="label">
+              <span className="label-text text-xl font-medium">
+                Jersey Name :
+              </span>
+            </label>
+            <input
+              type="text"
+              name="jerseyname"
+              placeholder="jersey Name"
+              className="input md:w-full input-bordered bg-slate-200"
+              required
+            />
+          </div>
+          <div className=" w-1/2">
           <label className="label">
-            <span className="label-text text-xl font-medium">
-              Jersey Name :
-            </span>
-          </label>
-          <input
-            type="text"
-            name="jerseyname"
-            placeholder="jersey Name"
-            className="input md:w-full input-bordered bg-slate-200"
-            required
-          />
+              <span className="label-text text-xl font-medium">
+                Product Id :
+              </span>
+            </label>
+            <div className="w-[100%] flex border items-center justify-center ">
+              <select
+                type="text"
+                defaultValue="ADB-1"
+                name="id"
+                className="select w-full font-bold text-xl rounded-lg bg-cyan-300 select-md"
+              >
+                <option>ADBAR-1</option>
+                <option>ADBAR-2</option>
+                <option>ADBAR-3</option>
+                <option>ADRM-1</option>
+                <option>ADRM-2</option>
+                <option>ADRM-3</option>
+                <option>ADINM-1</option>
+                <option>ADINM-2</option>
+                <option>ADPSG-1</option>
+                <option>ADPSG-2</option>
+                <option>ADMIA-1</option>
+                <option>ADMIA-2</option>
+                <option>ADBIJUS-1</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div className=" flex flex-col md:flex-row gap-5 ">
           <div className="form-control md:w-1/2 ">
             <label className="label">
-              <span className="label-text text-xl font-medium">
-                M :
-              </span>
+              <span className="label-text text-xl font-medium">M :</span>
             </label>
             <input
               type="text"
@@ -119,9 +151,7 @@ const AddJersey = () => {
           </div>
           <div className="form-control md:w-1/2 ">
             <label className="label">
-              <span className="label-text text-xl font-medium">
-                L :
-              </span>
+              <span className="label-text text-xl font-medium">L :</span>
             </label>
             <input
               type="text"
@@ -132,9 +162,7 @@ const AddJersey = () => {
           </div>
           <div className="form-control md:w-1/2 ">
             <label className="label">
-              <span className="label-text text-xl font-medium">
-                XL :
-              </span>
+              <span className="label-text text-xl font-medium">XL :</span>
             </label>
             <input
               type="text"
@@ -145,9 +173,7 @@ const AddJersey = () => {
           </div>
           <div className="form-control md:w-1/2 ">
             <label className="label">
-              <span className="label-text text-xl font-medium">
-                2XL :
-              </span>
+              <span className="label-text text-xl font-medium">2XL :</span>
             </label>
             <input
               type="text"
@@ -160,9 +186,7 @@ const AddJersey = () => {
         <div className=" flex flex-col md:flex-row gap-5 ">
           <div className="form-control  md:w-1/2">
             <label className="label">
-              <span className="label-text text-xl font-medium">
-                Price :
-              </span>
+              <span className="label-text text-xl font-medium">Price :</span>
             </label>
             <input
               type="text"
@@ -175,7 +199,7 @@ const AddJersey = () => {
           <div className="form-control md:w-1/2">
             <label className="label">
               <span className="label-text text-xl font-medium">
-                Jersey Image: 
+                Jersey Image:
               </span>
             </label>
             <input
@@ -232,7 +256,9 @@ const AddJersey = () => {
           />
         </div>
         <div className="form-control mt-6">
-          <button className="btn  text-white text-xl font-bold bg-cyan-800 rounded-xl p-2  ">Add Jersey</button>
+          <button className="btn  text-white text-xl font-bold bg-cyan-800 rounded-xl p-2  ">
+            Add Jersey
+          </button>
         </div>
       </form>
       <ToastContainer />

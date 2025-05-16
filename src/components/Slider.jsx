@@ -17,7 +17,7 @@ const Slider = () => {
                 initial={{ y: -500 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 1, type: "spring", stiffness: 10 }}
-                className="space-y-3 border border-red-600 flex-1"
+                className="space-y-3  flex-1"
               >
                 <h2 className="font-poppins  md:text-4xl font-medium md:font-bold">
                   Bercelona Premium Quality Home Kit 24/25 Jersey Circle Nicks
@@ -52,7 +52,7 @@ const Slider = () => {
                 initial={{ y: 500 }}
                 animate={{ y: 0 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 10 }}
-                className="flex-1 justify-center items-center border border-red-600 relative"
+                className="flex-1 justify-center items-center  relative"
               >
                 {" "}
                 <div className=" flex justify-center items-center">
