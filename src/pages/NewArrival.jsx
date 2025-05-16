@@ -28,7 +28,7 @@ const NewArrival = () => {
   }
   return (
     <div className="border mt-3 rounded-lg">
-      <h2 className="font-poppins font-medium  text-center text-2xl md:text-3xl  lg:text-5xl mb-10">
+      <h2 className="font-poppins font-medium  text-center text-2xl md:text-3xl  lg:text-5xl md:mb-10">
         All Jerseys
       </h2>
       <Fade cascade duration={1000}>

@@ -40,25 +40,25 @@ const FeaturesJercy = () => {
               key={jersey?._id}
               className="card font-open-sans card-compact text-cyan-950 bg-slate-300 shadow-md"
             >
-              <div className="w-[100] mx-auto m-1">
+              <div className=" flex justify-center mx-auto m-1">
                 <img
-                  className=" rounded-lg  w-96 h-96 object-cover  "
+                  className=" rounded-lg w-2/3 md:w-96 md:h-96 object-cover  "
                   src={jersey?.jerseyImage}
                   alt={jersey?.jerseyName}
                 />
               </div>
               <div className="card-body space-y-3">
-                <h2 className="font-poppins font-bold card-title">
+                <h2 className="font-poppins font-semibold md:font-bold md:card-title">
                   {jersey?.jerseyName}
                 </h2>
 
-                <div className="card-actions text-xl mt-14 justify-between items-center ">
+                <div className="card-actions md:text-xl mt-14 justify-between items-center ">
                   <p> Quantity : {jerseyQuantity}</p>
                   <p>
                     Price : <span className=" font-bold">{jersey?.price}</span>
                   </p>
                   <Link to={`/jerseyDetails/${jersey?._id}`}>
-                      <button className=" bg-green-500 text-cyan-50 text-xl font-bold p-2 rounded-lg ">BUY NOW</button>
+                      <button className=" bg-green-500 text-cyan-50 md:text-xl md:font-bold p-1 md:p-2 rounded-lg ">BUY NOW</button>
                   </Link>
                 </div>
               </div>
