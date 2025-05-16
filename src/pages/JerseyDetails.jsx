@@ -19,7 +19,7 @@ const JerseyDetails = () => {
   const { user } = useContext(AuthContext);
   const jerseys = useLoaderData();
   const navigate = useNavigate();
-  const commonAxios = useCommonAxios()
+  const commonAxios = useCommonAxios();
 
   const { register, handleSubmit } = useForm();
 
@@ -28,8 +28,15 @@ const JerseyDetails = () => {
   // console.log(jerseys, id, "dfdfss");
   // const spots = jerseys.find(spot => spot._id == id);
 
-  const { _id, jerseyName,productId, price, jerseyImage, expiredDate, additionalNotes } =
-    jerseys;
+  const {
+    _id,
+    jerseyName,
+    productId,
+    price,
+    jerseyImage,
+    expiredDate,
+    additionalNotes,
+  } = jerseys;
 
   const [count, setCount] = useState(1);
   //   const handleIncrement = () => {
@@ -41,7 +48,7 @@ const JerseyDetails = () => {
     if (count > 1) setCount(count - 1);
   };
 
-  const { mutateAsync} = useMutation({
+  const { mutateAsync } = useMutation({
     mutationFn: async (info) => {
       const { data } = await commonAxios.post("/cart", info);
       console.log(data, "cart data");
@@ -52,7 +59,7 @@ const JerseyDetails = () => {
       toast.success("cart added Succesful");
     },
   });
-  const handleBuy = async(data,action = "buy") => {
+  const handleBuy = async (data, action = "buy") => {
     const { _id, ...restjerseys } = jerseys;
     const jersey = {
       ...restjerseys,
@@ -64,16 +71,16 @@ const JerseyDetails = () => {
     };
     // mutateAsync(jersey)
     // console.log("buy okkk",data.size,count, jersey);
-     try {
-    await mutateAsync(jersey);
-    if (action === "buy") {
-      navigate("/cart"); // replace with your desired route
+    try {
+      await mutateAsync(jersey);
+      if (action === "buy") {
+        navigate("/cart"); // replace with your desired route
+      }
+
+      location.reload();
+    } catch (err) {
+      toast.error("Action failed");
     }
-    
-      location.reload()
-  } catch (err) {
-    toast.error("Action failed");
-  }
   };
   return (
     <div className="font-open-sans space-y-5 mx-4 lg:mx-12 ">
@@ -82,7 +89,7 @@ const JerseyDetails = () => {
       </Helmet>
       <Fade cascade duration={2000}>
         <div className=" mt-5 flex flex-col items-center gap-3 md:flex-row">
-          <div className="  md:w-2/3">
+          <div className=" flex justify-center md:justify-normal  md:w-2/3">
             <img className="w-1/2  rounded-lg" src={jerseyImage} alt="" />
           </div>
           <div className=" flex flex-col md:flex-row items-center lg:gap-10">
@@ -91,13 +98,13 @@ const JerseyDetails = () => {
               className="space-y-6 ng-untouched ng-pristine ng-valid"
             >
               <div>
-                <h1 className=" font-bold text-2xl ">{jerseyName}</h1>
-                <p className=" text-xl font-medium ">Price : {price}</p>
+                <h1 className=" font-bold md:text-2xl ">{jerseyName}</h1>
+                <p className=" md:text-xl font-medium ">Price : {price}</p>
               </div>
               <div>
                 <select
                   type="text"
-                   {...register("size")}
+                  {...register("size")}
                   defaultValue="XL"
                   name="size"
                   className="select font-bold text-xl rounded-lg bg-cyan-300 select-md"
@@ -108,10 +115,10 @@ const JerseyDetails = () => {
                   <option>2XL</option>
                 </select>
               </div>
-              <div className=" flex gap-6">
+              <div className=" flex justify-center items-center md:justify-normal md:items-natural gap-2 md:gap-6">
                 <div className="flex divide-x-2 rounded text-gray-100 dark:text-gray-800 divide-gray-700 dark:divide-gray-300">
                   <button
-                  type="button"
+                    type="button"
                     onClick={handleDicrement}
                     className="px-3 font-bold text-xl py-1"
                   >
@@ -131,16 +138,25 @@ const JerseyDetails = () => {
                     +
                   </button>
                 </div>
-                <button className=" text-xl font-bold bg-cyan-500 rounded-xl p-2">
+                <button className=" md:text-xl font-medium md:font-bold bg-cyan-500 rounded-xl p-1 md:p-2">
                   Add Cart
                 </button>
+                <div>
+                <button
+                  type="submit"
+                  onClick={handleSubmit((data) => handleBuy(data, "buy"))}
+                  className=" inline-block md:hidden bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
+                >
+                  BUY NOW
+                </button>
+              </div>
               </div>
 
               <div>
                 <button
                   type="submit"
                   onClick={handleSubmit((data) => handleBuy(data, "buy"))}
-                  className=" bg-green-600 text-xl font-bold p-3 rounded-lg "
+                  className=" hidden md:inline-block bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
                 >
                   BUY NOW
                 </button>

@@ -69,9 +69,9 @@ const Cart = () => {
     );
   }
   return (
-    <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 py-10 border border-red-500 ">
+    <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 md:py-3  ">
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
-        <h2 className="text-xl font-semibold">Your cart</h2>
+        <h2 className="md:text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
           {carts?.map((cart) => <EachCart key={cart?.id} cart={cart} handleDeleteCart={handleDeleteCart} />)}
         </ul>
@@ -169,10 +169,10 @@ const Cart = () => {
           </section>
         </div>
         {/* // cheekout to payment */}
-        <div className="space-y-1 text-right">
+        <div className="space-y-1 text-right mr-4">
           <p>
             Total amount:
-            <span className="font-semibold">357 €</span>
+            <span className="font-semibold"> 357 Taka</span>
           </p>
           <p className="text-sm dark:text-gray-600">
             Not including taxes and shipping costs
@@ -183,14 +183,14 @@ const Cart = () => {
             type="button"
             className="px-6 py-2 border rounded-md dark:border-violet-600"
           >
-            Back
-            <span className="sr-only sm:not-sr-only">to shop</span>
+            Back 
+            <span className="sr-only sm:not-sr-only"> to shop</span>
           </button>
           <button
             type="button"
             className="px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600"
           >
-            <span className="sr-only sm:not-sr-only">Continue to</span>Checkout
+            <span className="sr-only sm:not-sr-only">Continue to</span> Checkout
           </button>
         </div>
       </div>
