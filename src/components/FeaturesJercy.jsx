@@ -21,8 +21,7 @@ const FeaturesJercy = () => {
       </div>
     );
   }
-  const quantity = jerseys?.reduce((sum, jersey) => sum + jersey?.m + jersey?.l + jersey?.xl + jersey?.xl2, 0);
-  return (
+    return (
     <div className="border mt-10 rounded-lg">
       <h2 className="font-poppins font-medium  text-center text-2xl md:text-3xl  lg:text-5xl mb-10">
         Featured Jerseys
