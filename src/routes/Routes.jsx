@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         },
         {
           path: "addJersey",
-          element: <HiddenRoutes><AddJersey /></HiddenRoutes>
+          element: <AdminRoutes><HiddenRoutes><AddJersey /></HiddenRoutes></AdminRoutes>
         },
         {
           path: "/jerseyDetails/:id",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/allStock",
-          element: <HiddenRoutes><AllStock /></HiddenRoutes>
+          element: <AdminRoutes><HiddenRoutes><AllStock /></HiddenRoutes></AdminRoutes>
         },
         {
           path: "/dashboard",
