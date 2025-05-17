@@ -11,6 +11,7 @@ import DashBoard from "../pages/DashBoard";
 import JerseyDetails from "../pages/JerseyDetails";
 import HiddenRoutes from "./HiddenRoutes";
 import Cart from "../pages/Cart";
+import AdminRoutes from "./AdminRoutes";
 
 const router = createBrowserRouter([
     {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/dashboard",
-          element: <HiddenRoutes><DashBoard /></HiddenRoutes>
+          element: <AdminRoutes><HiddenRoutes><DashBoard /></HiddenRoutes></AdminRoutes>
         },
         {
           path: "/cart",
