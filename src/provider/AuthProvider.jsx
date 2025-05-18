@@ -9,9 +9,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
+import useCommonAxios from "../hooks/useCommonAxios";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const auth = getAuth(app);
+  const commonAxios = useCommonAxios();
   const [loading, setLoading] = useState(true);
 
   const createuser = (email, password) => {
@@ -36,9 +38,23 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      //   console.log(currentUser, "currentUser");
+      console.log(currentUser, "currentUser");
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser) {
+        // sign jwt token
+        const userInfo = { email: currentUser?.email };
+        // console.log(userInfo, "userinfo");
+        commonAxios.post("/jwt", userInfo).then((res) => {
+          if (res?.data?.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        // TODO: remove webtoken
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => {
       unsubscribe();

@@ -60,7 +60,7 @@ const Cart = () => {
 
   // console.log(carts?.length, "ksdfssdfs");
   // if (carts?.length == 0 && carts?.length !== undefined)
-  console.log(carts, user?.email, "cartsss pailam");
+  // console.log(carts, user?.email, "cartsss pailam");
    if ( carts?.length < 1 || !carts) {
     return (
       <div className=" mt-6 flex justify-center">

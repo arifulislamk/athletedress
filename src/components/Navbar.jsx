@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import useAuthFire from "../hooks/useAuthFire";
 import { FaShoppingCart } from "react-icons/fa";
 import useCommonAxios from "../hooks/useCommonAxios";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuthFire();
   const [showdropdown, setShowdropdown] = useState(false);
-  const commonAxios = useCommonAxios()
+  const commonAxios = useCommonAxios() ;
+  const [isAdmin, isAdminLoading] = useAdmin()
   const logout = () => {
     logOut();
   };
@@ -31,7 +33,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/newArrival">New Arrival</NavLink>
       </li>
-      {user && (
+      {user && isAdmin && (
         <>
           {" "}
           <li>

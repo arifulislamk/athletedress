@@ -66,7 +66,7 @@ const EachCart = ({ cart, handleDeleteCart }) => {
                 </svg>
                 <span>Add to favorites</span>
               </button>
-              <div className="flex divide-x-2 rounded text-gray-100 dark:text-gray-800 divide-gray-700 dark:divide-gray-300">
+              <div className="flex divide-x-2 rounded ">
                 <button
                   type="button"
                   onClick={handleDicrement}
