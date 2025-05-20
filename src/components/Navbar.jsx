@@ -8,14 +8,14 @@ import useAdmin from "../hooks/useAdmin";
 const Navbar = () => {
   const { user, logOut } = useAuthFire();
   const [showdropdown, setShowdropdown] = useState(false);
-  const commonAxios = useCommonAxios() ;
-  const [isAdmin, isAdminLoading] = useAdmin()
+  const commonAxios = useCommonAxios();
+  const [isAdmin, isAdminLoading] = useAdmin();
   const logout = () => {
     logOut();
   };
   const [carts, setcarts] = useState([]);
   useEffect(() => {
-     if (!user?.email) return;
+    if (!user?.email) return;
     const getData = async () => {
       const { data } = await commonAxios(`/carts/${user?.email}`);
       // console.log(data, "data get");
@@ -23,6 +23,7 @@ const Navbar = () => {
     };
     getData();
   }, [user?.email]);
+  const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
   // console.log(carts,user?.email, "ccartsss pailam");
 
   const links = (
@@ -57,7 +58,11 @@ const Navbar = () => {
       <div className="navbar text-cyan-950 shadow-lg bg-slate-300">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn w-6 p-0 btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn w-6 p-0 btn-ghost lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-8 w-10"
@@ -134,14 +139,21 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
-          {
-            carts?.length > 0 && <Link to="/cart">
-            <button className="btn w-10 p-0 h-10 mr-0.5 md:mr-2 rounded-full btn-sm">
-              <FaShoppingCart className="" />
-              <div className="">+{carts?.length}</div>
-            </button>
-          </Link>
-          }
+          {carts?.length > 0 ? (
+            <Link to="/cart">
+              <button className="btn w-10 p-0 h-10 mr-0.5 md:mr-2 rounded-full btn-sm">
+                <FaShoppingCart className="" />
+                <div className="">+{carts?.length}</div>
+              </button>
+            </Link>
+          ) : !user ? (
+            <Link to="/cart">
+              <button className="btn w-10 p-0 h-10 mr-0.5 md:mr-2 rounded-full btn-sm">
+                <FaShoppingCart className="" />
+                <div className="">+{cartList?.length}</div>
+              </button>
+            </Link>
+          ): ""}
           {user ? (
             <>
               {user && (
@@ -169,7 +181,9 @@ const Navbar = () => {
                   {showdropdown && (
                     <div className="flex flex-col absolute left-[20%] md:left-[70%] lg:left-[86%]  lg:right-2  bg-blue-300 w-52 shadow-md p-5 rounded-md">
                       <p className=" border-b-2 border-black mb-4 text-center font-bold">
-                        {user?.displayName ? user?.displayName : "Name Not Found"}
+                        {user?.displayName
+                          ? user?.displayName
+                          : "Name Not Found"}
                       </p>
                       <p className=" border-b-2 border-black mb-4 text-center font-semibold">
                         {user?.email ? user?.email : "email Not Found"}

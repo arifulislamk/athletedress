@@ -15,6 +15,10 @@ const Cart = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
   const [carts, setcarts] = useState([]);
+
+  const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
+  console.log(cartList.length, "cart locald");
+
   useEffect(() => {
     if (!user?.email) return;
     const getData = async () => {
@@ -23,6 +27,9 @@ const Cart = () => {
       setcarts(data);
       if (!data || data?.length == 0) {
         navigate("/newArrival");
+        if (cartList.length > 0 && !user) {
+          navigate("/cart");
+        }
       }
     };
     getData();
@@ -61,7 +68,7 @@ const Cart = () => {
   // console.log(carts?.length, "ksdfssdfs");
   // if (carts?.length == 0 && carts?.length !== undefined)
   // console.log(carts, user?.email, "cartsss pailam");
-   if ( carts?.length < 1 || !carts) {
+  if ((cartList.length < 1 && carts?.length < 1) || !carts) {
     return (
       <div className=" mt-6 flex justify-center">
         <span className="loading w-20 text-yellow-400 loading-spinner "></span>
@@ -73,7 +80,26 @@ const Cart = () => {
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="md:text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
-          {carts?.map((cart) => <EachCart key={cart?.id} cart={cart} handleDeleteCart={handleDeleteCart} />)}
+          {carts && carts.length > 0 ? (
+            carts.map((cart) => (
+              <EachCart
+                key={cart?._id}
+                cart={cart}
+                handleDeleteCart={handleDeleteCart}
+              />
+            ))
+          ) : cartList.length > 0 ? (
+            cartList.map((cart, idx) => (
+              <EachCart
+                key={cart?._id}
+                cart={cart}
+                handleDeleteCart={handleDeleteCart}
+              />
+              // Optionally use: <EachCart cart={cart} />
+            ))
+          ) : (
+            <p className="text-center text-gray-500">Cart is empty.</p>
+          )}
         </ul>
       </div>
       <div>
@@ -183,7 +209,7 @@ const Cart = () => {
             type="button"
             className="px-6 py-2 border rounded-md dark:border-violet-600"
           >
-            Back 
+            Back
             <span className="sr-only sm:not-sr-only"> to shop</span>
           </button>
           <button

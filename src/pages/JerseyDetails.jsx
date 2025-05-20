@@ -64,19 +64,38 @@ const JerseyDetails = () => {
     const jersey = {
       ...restjerseys,
       cartaddDate: startDate,
-      purchaseEmail: user.email,
+      purchaseEmail: user?.email,
       size: data.size,
       count: count,
       productId: productId,
     };
     // mutateAsync(jersey)
-    // console.log("buy okkk",data.size,count, jersey);
+    console.log("buy okkk", data.size, count, jersey);
     try {
-      await mutateAsync(jersey);
-      if (action === "buy") {
-        navigate("/cart"); // replace with your desired route
+      if (!user) {
+        const existingCart = JSON.parse(localStorage.getItem("cartList")) || [];
+        // Check for same productId and size
+        const existingItemIndex = existingCart.findIndex(
+          (item) => item?.productId === jersey?.productId
+        );
+        if (existingItemIndex !== -1) {
+          // ✅ Same item exists — update count
+          existingCart[existingItemIndex].count += count;
+        } else {
+          // ✅ New item — push to cart
+          existingCart.push(jersey);
+        }
+        localStorage.setItem("cartList", JSON.stringify(existingCart));
+        toast.success("Item added to local cart!");
+        if (action === "buy") {
+          navigate("/cart"); // replace with your desired route
+        }
+      } else {
+        await mutateAsync(jersey);
+        if (action === "buy") {
+          navigate("/cart"); // replace with your desired route
+        }
       }
-
       location.reload();
     } catch (err) {
       toast.error("Action failed");
@@ -142,14 +161,14 @@ const JerseyDetails = () => {
                   Add Cart
                 </button>
                 <div>
-                <button
-                  type="submit"
-                  onClick={handleSubmit((data) => handleBuy(data, "buy"))}
-                  className=" inline-block md:hidden bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
-                >
-                  BUY NOW
-                </button>
-              </div>
+                  <button
+                    type="submit"
+                    onClick={handleSubmit((data) => handleBuy(data, "buy"))}
+                    className=" inline-block md:hidden bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
+                  >
+                    BUY NOW
+                  </button>
+                </div>
               </div>
 
               <div>

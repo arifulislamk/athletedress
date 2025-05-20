@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const EachCart = ({ cart, handleDeleteCart }) => {
+
   const [count, setCount] = useState(cart?.count);
   const handleDicrement = () => {
     if (count > 1) setCount(count - 1);
@@ -23,7 +24,9 @@ const EachCart = ({ cart, handleDeleteCart }) => {
                   {cart?.jerseyName}
                 </h3>
                 <div className=" flex md:hidden">
-                  <p className="text-sm mr-3 line-through dark:text-gray-400">600</p>
+                  <p className="text-sm mr-3 line-through dark:text-gray-400">
+                    600
+                  </p>
                   <p className=" md:text-lg font-semibold">
                     {cart?.price} Taka
                   </p>
