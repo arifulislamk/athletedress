@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const EachCart = ({ cart, handleDeleteCart }) => {
-
+const EachCart = ({ cart, handleDeleteCart, user }) => {
+  console.log(cart, "dfd");
   const [count, setCount] = useState(cart?.count);
   const handleDicrement = () => {
     if (count > 1) setCount(count - 1);
@@ -40,7 +40,13 @@ const EachCart = ({ cart, handleDeleteCart }) => {
             <div className="flex text-sm divide-x">
               <button
                 type="button"
-                onClick={() => handleDeleteCart(cart._id)}
+                onClick={() => {
+                  if (cart._id) {
+                    handleDeleteCart(cart._id); // Server cart
+                  } else if (cart.productId) {
+                    handleDeleteCart(cart.productId); // Local cart
+                  }
+                }}
                 className="flex items-center px-1 md:px-2 py-1 pl-0 space-x-1"
               >
                 <svg

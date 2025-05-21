@@ -61,6 +61,12 @@ const Cart = () => {
             }
             location.reload();
           });
+        const existingCart = JSON.parse(localStorage.getItem("cartList")) || [];
+        const updatedCart = existingCart.filter(
+          (item) => item.productId !== _id
+        );
+        localStorage.setItem("cartList", JSON.stringify(updatedCart));
+        location.reload();
       }
     });
   };
@@ -94,6 +100,7 @@ const Cart = () => {
                 key={cart?._id}
                 cart={cart}
                 handleDeleteCart={handleDeleteCart}
+                user={user}
               />
               // Optionally use: <EachCart cart={cart} />
             ))
