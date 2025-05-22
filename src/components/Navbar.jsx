@@ -145,7 +145,7 @@ const Navbar = () => {
                 <div className="">+{carts?.length}</div>
               </button>
             </Link>
-          ) : !user ? (
+          ) : cartList?.length > 0 ? (
             <Link to="/cart">
               <button className="btn w-10 p-0 h-10 mr-0.5 md:mr-2 rounded-full btn-sm">
                 <FaShoppingCart className="" />

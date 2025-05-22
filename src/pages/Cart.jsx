@@ -18,7 +18,8 @@ const Cart = () => {
 
   const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
   console.log(cartList.length, "cart locald");
-
+  if(cartList.length < 1) navigate("/newArrival")
+    
   useEffect(() => {
     if (!user?.email) return;
     const getData = async () => {
