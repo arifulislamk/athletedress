@@ -108,7 +108,7 @@ const AddJersey = () => {
             />
           </div>
           <div className=" w-1/2">
-          <label className="label">
+            <label className="label">
               <span className="label-text text-xl font-medium">
                 Product Id :
               </span>

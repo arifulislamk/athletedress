@@ -18,8 +18,8 @@ const Cart = () => {
 
   const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
   console.log(cartList.length, "cart locald");
-  if(cartList.length < 1) navigate("/newArrival")
-    
+  if (cartList.length < 1) navigate("/newArrival");
+
   useEffect(() => {
     if (!user?.email) return;
     const getData = async () => {
@@ -82,6 +82,16 @@ const Cart = () => {
       </div>
     );
   }
+  const handlecheckout = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const customerName = form.name.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
+    const city = form.city.value;
+    const fullAddress = form.address.value;
+    console.log(customerName, phone, email, city, fullAddress, "paisi chekout");
+  };
   return (
     <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 md:py-3  ">
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
@@ -110,123 +120,125 @@ const Cart = () => {
           )}
         </ul>
       </div>
-      <div>
-        <div>
-          <section className="p-6 rounded-md dark:bg-gray-100 dark:text-gray-900">
-            <form
-              noValidate=""
-              action=""
-              className="container flex flex-col mx-auto rounded-md "
-            >
-              <fieldset className="p-2 rounded-md shadow-sm  dark:bg-gray-50">
-                <div className="space-y-2 mb-4 md:mb-10 col-span-full lg:col-span-1">
-                  <p className="font-medium md:text-xl">Personal Inormation</p>
-                  <p className="text-sm ">
-                    Please Enter the full form And{" "}
-                    <span className=" text-green-600">confrim purchase.</span>
-                  </p>
-                </div>
-                <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-                  <div className="col-span-full sm:col-span-3">
-                    <label
-                      htmlFor="firstname"
-                      className="text-sm md:text-xl md:font-medium"
-                    >
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      type="text"
-                      placeholder="First name"
-                      className="w-full md:p-3 rounded-md bg-white border border-cyan-950 focus:ring focus:ring-opacity-5"
-                    />
-                  </div>
-                  <div className="col-span-full sm:col-span-3">
-                    <label
-                      htmlFor="number"
-                      className="text-sm md:text-xl md:font-medium"
-                    >
-                      Phone
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Phone"
-                      className="w-full md:p-3 bg-white border border-cyan-950 rounded-md focus:ring focus:ring-opacity-5"
-                    />
-                  </div>
-                  <div className="col-span-full sm:col-span-3">
-                    <label
-                      htmlFor="email"
-                      className="text-sm md:text-xl md:font-medium"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      placeholder="Email"
-                      className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
-                    />
-                  </div>
+      <div className="p-6 rounded-md">
+        <form
+          onSubmit={handlecheckout}
+          noValidate=""
+          action=""
+          className="container flex flex-col mx-auto rounded-md "
+        >
+          <fieldset className="p-2 rounded-md shadow-sm  dark:bg-gray-50">
+            <div className="space-y-2 mb-4 md:mb-10 col-span-full lg:col-span-1">
+              <p className="font-medium md:text-xl">Personal Inormation</p>
+              <p className="text-sm ">
+                Please Enter the full form And
+                <span className=" text-green-600"> confrim purchase.</span>
+              </p>
+            </div>
+            <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+              <div className="col-span-full sm:col-span-3">
+                <label
+                  htmlFor="firstname"
+                  className="text-sm md:text-xl md:font-medium"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="First name"
+                  className="w-full md:p-3 rounded-md bg-white border border-cyan-950 focus:ring focus:ring-opacity-5"
+                />
+              </div>
+              <div className="col-span-full sm:col-span-3">
+                <label
+                  htmlFor="number"
+                  className="text-sm md:text-xl md:font-medium"
+                >
+                  Phone
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone"
+                  className="w-full md:p-3 bg-white border border-cyan-950 rounded-md focus:ring focus:ring-opacity-5"
+                />
+              </div>
+              <div className="col-span-full sm:col-span-3">
+                <label
+                  htmlFor="email"
+                  className="text-sm md:text-xl md:font-medium"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
+                />
+              </div>
 
-                  <div className="col-span-full sm:col-span-3">
-                    <label
-                      htmlFor="city"
-                      className="text-sm md:text-xl md:font-medium"
-                    >
-                      City
-                    </label>
-                    <input
-                      id="city"
-                      type="text"
-                      placeholder="city"
-                      className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
-                    />
-                  </div>
-                  <div className="col-span-full">
-                    <label
-                      htmlFor="address"
-                      className=" md:text-xl md:font-medium "
-                    >
-                      Address
-                    </label>
-                    <input
-                      id="address"
-                      type="text"
-                      placeholder="address"
-                      className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
-                    />
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </section>
-        </div>
-        {/* // cheekout to payment */}
-        <div className="space-y-1 text-right mr-4">
-          <p>
-            Total amount:
-            <span className="font-semibold"> 357 Taka</span>
-          </p>
-          <p className="text-sm dark:text-gray-600">
-            Not including taxes and shipping costs
-          </p>
-        </div>
-        <div className="flex justify-end space-x-4">
-          <button
-            type="button"
-            className="px-6 py-2 border rounded-md dark:border-violet-600"
-          >
-            Back
-            <span className="sr-only sm:not-sr-only"> to shop</span>
-          </button>
-          <button
-            type="button"
-            className="px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600"
-          >
-            <span className="sr-only sm:not-sr-only">Continue to</span> Checkout
-          </button>
-        </div>
+              <div className="col-span-full sm:col-span-3">
+                <label
+                  htmlFor="city"
+                  className="text-sm md:text-xl md:font-medium"
+                >
+                  City
+                </label>
+                <input
+                  id="city"
+                  type="text"
+                  name="city"
+                  placeholder="city"
+                  className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
+                />
+              </div>
+              <div className="col-span-full">
+                <label
+                  htmlFor="address"
+                  className=" md:text-xl md:font-medium "
+                >
+                  Address
+                </label>
+                <input
+                  id="address"
+                  type="text"
+                  name="address"
+                  placeholder="address"
+                  className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1 text-right mr-4">
+              <p>
+                Total amount:
+                <span className="font-semibold"> 357 Taka</span>
+              </p>
+              <p className="text-sm dark:text-gray-600">
+                Not including taxes and shipping costs
+              </p>
+            </div>
+            <div className="flex justify-end space-x-4">
+              <button
+                type="button"
+                className="px-6 py-2 border rounded-md dark:border-violet-600"
+              >
+                Back
+                <span className="sr-only sm:not-sr-only"> to shop</span>
+              </button>
+              <button
+                className=" btn px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600"
+              >
+                <span className="sr-only sm:not-sr-only">Continue to </span>{" "}
+                 Checkout
+              </button>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </div>
   );
