@@ -11,7 +11,7 @@ const useAdmin = () => {
         queryKey : [user?.email, 'isAdmin'],
         queryFn : async () => {
             const res = await commonAxios(`user/admin/${user?.email}`)
-            console.log(res.data,"admin check")
+            // console.log(res.data,"admin check")
             return res.data.admin
         }
     })

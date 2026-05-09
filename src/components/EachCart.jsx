@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const EachCart = ({ cart, handleDeleteCart, user }) => {
-  console.log(cart, "dfd");
+  // console.log(cart, "dfd");
   const [count, setCount] = useState(cart?.count);
   const handleDicrement = () => {
     if (count > 1) setCount(count - 1);

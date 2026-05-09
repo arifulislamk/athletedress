@@ -20,7 +20,7 @@ const JerseyDetails = () => {
   const jerseys = useLoaderData();
   const navigate = useNavigate();
   const commonAxios = useCommonAxios();
-
+ 
   const { register, handleSubmit } = useForm();
 
   const { id } = useParams();

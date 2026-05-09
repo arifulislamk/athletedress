@@ -20,13 +20,13 @@ const Slider = () => {
                 className="space-y-3  flex-1"
               >
                 <h2 className="font-poppins  md:text-4xl font-medium md:font-bold">
-                  Bercelona Premium Quality Home Kit 24/25 Jersey Circle Nicks
+                 Argentina Home Football Jersey 2026 – Player Edition Thai Premium (White)
                 </h2>
                 <p className="  md:text-xl font-medium text-error ">
                   Regular Price : 1499 Taka <br />
                   Discount Price :{" "}
                   <span className=" text-green-600 font-bold md:text-2xl ">
-                    1299 Taka
+                    700 Taka
                   </span>
                 </p>
                 <div className=" flex gap-10 items-center">
@@ -57,7 +57,7 @@ const Slider = () => {
                 {" "}
                 <div className=" flex justify-center items-center">
                   <img
-                    src="https://i.ibb.co.com/tMJvNGmV/494816128-695283886691944-4772800413708119016-n.jpg"
+                    src="https://i.ibb.co.com/YTFhLRtC/Whats-App-Image-2026-05-01-at-13-41-30.jpg"
                     className="w-[55%] md:w-[60%] rounded-2xl"
                   />
                 </div>
@@ -100,7 +100,7 @@ const Slider = () => {
                 <div className=" flex justify-center items-center"></div>
                 <Slide direction="right" cascade delay={100} triggerOnce>
                   <img
-                    src="https://i.ibb.co.com/Q74Kw3hk/Mens-Home-Authentic-Shirt-2425-White.webp"
+                    src="https://i.ibb.co.com/JWhct8rg/Whats-App-Image-2026-05-01-at-13-48-22.jpg"
                     className="w-[72%] rounded-2xl"
                   />
                 </Slide>

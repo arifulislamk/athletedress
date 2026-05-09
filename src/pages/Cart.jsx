@@ -17,14 +17,18 @@ const Cart = () => {
   const [carts, setcarts] = useState([]);
 
   const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-  console.log(cartList.length, "cart locald");
-  if (cartList.length < 1) navigate("/newArrival");
+  // console.log(cartList?.length, "cart length");
+  // console.log(cartList, "cart lengthd");
+  // setInterval(() => {
+  //   if (cartList?.length < 1) navigate("/newArrival");
+  // }, 3000);
+  
 
   useEffect(() => {
     if (!user?.email) return;
     const getData = async () => {
       const { data } = await commonAxios(`/carts/${user?.email}`);
-      console.log(data, "data get");
+      // console.log(data, "data get");
       setcarts(data);
       if (!data || data?.length == 0) {
         navigate("/newArrival");
@@ -82,6 +86,7 @@ const Cart = () => {
       </div>
     );
   }
+  // console.log( cartList,'dfsasdf sa') ;
   const handlecheckout = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -90,7 +95,8 @@ const Cart = () => {
     const email = form.email.value;
     const city = form.city.value;
     const fullAddress = form.address.value;
-    console.log(customerName, phone, email, city, fullAddress, "paisi chekout");
+    const product = carts?.length ? carts : cartList ;
+    console.log(customerName, phone, email, city, fullAddress,product, "paisi chekout");
   };
   return (
     <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 md:py-3  ">
