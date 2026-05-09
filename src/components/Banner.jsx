@@ -23,6 +23,18 @@ const Banner = () => {
       >
         <SwiperSlide className=" gap-3">
           <img
+            src="https://i.ibb.co.com/YTFhLRtC/Whats-App-Image-2026-05-01-at-13-41-30.jpg"
+            alt="f"
+            className="rounded-md w-full max-w-[240px] h-[180px] object-cover"
+          />
+          <img
+            src="https://i.ibb.co.com/JWhct8rg/Whats-App-Image-2026-05-01-at-13-48-22.jpg"
+            alt="f"
+            className="rounded-md hidden w-full max-w-[240px] h-[180px] object-cover"
+          />
+        </SwiperSlide>
+        <SwiperSlide className=" gap-3">
+          <img
             src="https://i.ibb.co.com/tMJvNGmV/494816128-695283886691944-4772800413708119016-n.jpg"
             alt="f"
             className="rounded-md w-full max-w-[240px] h-[180px] object-cover"

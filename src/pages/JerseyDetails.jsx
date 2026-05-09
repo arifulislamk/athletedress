@@ -20,7 +20,7 @@ const JerseyDetails = () => {
   const jerseys = useLoaderData();
   const navigate = useNavigate();
   const commonAxios = useCommonAxios();
- 
+
   const { register, handleSubmit } = useForm();
 
   const { id } = useParams();
@@ -70,13 +70,14 @@ const JerseyDetails = () => {
       productId: productId,
     };
     // mutateAsync(jersey)
-    console.log("buy okkk", data.size, count, jersey);
+    console.log("buy o", data.size, count,action, jersey);
     try {
       if (!user) {
+        console.log("ami user na")
         const existingCart = JSON.parse(localStorage.getItem("cartList")) || [];
         // Check for same productId and size
         const existingItemIndex = existingCart.findIndex(
-          (item) => item?.productId === jersey?.productId
+          (item) => item?.productId === jersey?.productId,
         );
         if (existingItemIndex !== -1) {
           // ✅ Same item exists — update count

@@ -12,7 +12,7 @@ const Slider = () => {
       <Fade cascade duration={3000}>
         <div className="font-open-sans lg:mb-20  rounded-2xl carousel w-full lg:h-[550px] ">
           <div id="slide1" className="carousel-item relative w-full">
-            <div className="flex flex-col lg:flex-row-reverse p-4 lg:p-20 md:gap-14">
+            <div className="flex flex-col lg:flex-row-reverse py-1 px-4 lg:px-20 md:gap-14">
               <motion.div
                 initial={{ y: -500 }}
                 animate={{ y: 0 }}
