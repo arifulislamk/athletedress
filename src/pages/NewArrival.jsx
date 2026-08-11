@@ -18,7 +18,7 @@ const NewArrival = () => {
     },
   });
 
-  console.log(jerseys, "1111");
+  // console.log(jerseys, "1111");
   if (isLoading || !jerseys) {
     return (
       <div className=" mt-6 flex justify-center">
