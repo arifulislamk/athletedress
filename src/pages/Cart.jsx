@@ -22,7 +22,6 @@ const Cart = () => {
   // setInterval(() => {
   //   if (cartList?.length < 1) navigate("/newArrival");
   // }, 3000);
-  
 
   useEffect(() => {
     if (!user?.email) return;
@@ -95,11 +94,25 @@ const Cart = () => {
     const email = form.email.value;
     const city = form.city.value;
     const fullAddress = form.address.value;
-    const product = carts?.length ? carts : cartList ;
-    console.log(customerName, phone, email, city, fullAddress,product, "paisi chekout");
+    // Select থেকে data
+  const deliveryArea = form.deliveryArea.value;
+
+  // Radio থেকে data
+  const paymentMethod = form.paymentMethod.value;
+
+    const product = carts?.length ? carts : cartList;
+    console.log(
+      customerName,
+      phone,
+      email,
+      city,
+      fullAddress,
+      product,
+      "paisi chekout11",deliveryArea,paymentMethod
+    );
   };
   return (
-    <div className=" flex flex-col md:flex-row gap-5 p-2 md:px-20 md:py-3  ">
+    <div className=" flex flex-col md:flex-row md:gap-5 p-2 md:px-20 md:py-3  ">
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="md:text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
@@ -126,7 +139,7 @@ const Cart = () => {
           )}
         </ul>
       </div>
-      <div className="p-6 rounded-md">
+      <div className="p-1 md:p-6 rounded-md">
         <form
           onSubmit={handlecheckout}
           noValidate=""
@@ -135,25 +148,24 @@ const Cart = () => {
         >
           <fieldset className="p-2 rounded-md shadow-sm  dark:bg-gray-50">
             <div className="space-y-2 mb-4 md:mb-10 col-span-full lg:col-span-1">
-              <p className="font-medium md:text-xl">Personal Inormation</p>
-              <p className="text-sm ">
-                Please Enter the full form And
-                <span className=" text-green-600"> confrim purchase.</span>
+              <p className="text-xl ">
+                অর্ডার <span className=" text-green-600">কনফার্ম </span> করতে,
+                অনুগ্রহ করে নিচের ফর্মটি সম্পূর্ণভাবে পূরণ করুন।
               </p>
             </div>
-            <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+            <div className="grid grid-cols-6 gap-3 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label
                   htmlFor="firstname"
                   className="text-sm md:text-xl md:font-medium"
                 >
-                  Name
+                  নাম*
                 </label>
                 <input
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="First name"
+                  placeholder="আপনার নাম"
                   className="w-full md:p-3 rounded-md bg-white border border-cyan-950 focus:ring focus:ring-opacity-5"
                 />
               </div>
@@ -162,12 +174,12 @@ const Cart = () => {
                   htmlFor="number"
                   className="text-sm md:text-xl md:font-medium"
                 >
-                  Phone
+                  মোবাইল নম্বর*
                 </label>
                 <input
                   type="text"
                   name="phone"
-                  placeholder="Phone"
+                  placeholder="নম্বর"
                   className="w-full md:p-3 bg-white border border-cyan-950 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
@@ -176,29 +188,28 @@ const Cart = () => {
                   htmlFor="email"
                   className="text-sm md:text-xl md:font-medium"
                 >
-                  Email
+                  বিকল্প মোবাইল নম্বর (যদি থাকে):
                 </label>
                 <input
                   id="email"
-                  type="email"
+                  type="number"
                   name="email"
-                  placeholder="Email"
+                  placeholder="নম্বর"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
-
               <div className="col-span-full sm:col-span-3">
                 <label
                   htmlFor="city"
                   className="text-sm md:text-xl md:font-medium"
                 >
-                  City
+                  ডেলিভারির সম্পূর্ণ ঠিকানা*
                 </label>
                 <input
                   id="city"
                   type="text"
                   name="city"
-                  placeholder="city"
+                  placeholder="গ্রাম/ওয়ার্ড, স্থানীয় বাজার, ইউনিয়ন/পৌরসভা, থানা, জেলা"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
@@ -207,40 +218,78 @@ const Cart = () => {
                   htmlFor="address"
                   className=" md:text-xl md:font-medium "
                 >
-                  Address
+                  ডেলিভারি ম্যানের জন্য অতিরিক্ত নির্দেশনা:
                 </label>
                 <input
                   id="address"
                   type="text"
                   name="address"
-                  placeholder="address"
+                  placeholder="না লিখলেও সমস্যা নেই"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
             </div>
+            <div className=" space-y-3 mt-4">
+              <div className="space-y-1 text-left mr-4">
+                <p className="text-sm dark:text-gray-600">
+                  ডেলিভারি চার্জ: ঢাকার মধ্যে ৬০ টাকা, সারা বাংলাদেশ ১২০ টাকা
+                </p>
+              </div>
+              <div className="space-y-1 text-right mr-4 ">
+                <select
+                  name="deliveryArea"
+                  defaultValue="ঢাকার বাইরে"
+                  className="select select-neutral bg-white"
+                >
+                  <option value="ঢাকার মধ্যে">ঢাকার মধ্যে</option>
+                  <option value="ঢাকার বাইরে">ঢাকার বাইরে (অন্য জেলা)</option>
+                </select>
+              </div>
+              <div className="space-y-1 text-start">
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="ক্যাশ অন ডেলিভারি"
+                    className="radio radio-primary"
+                    defaultChecked
+                  />
+                  ক্যাশ অন ডেলিভারি
+                </label>
 
-            <div className="space-y-1 text-right mr-4">
+                <br />
+
+                <label>
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="অনলাইন পেমেন্ট"
+                    className="radio radio-primary"
+                  />
+                  অনলাইন পেমেন্ট
+                </label>
+              </div>
+            </div>
+
+            <div className=" mt-4">
               <p>
-                Total amount:
-                <span className="font-semibold"> 357 Taka</span>
-              </p>
-              <p className="text-sm dark:text-gray-600">
-                Not including taxes and shipping costs
+                সর্বমোট :<span className="font-semibold"> 357 টাকা</span>
               </p>
             </div>
-            <div className="flex justify-end space-x-4">
-              <button
+            <div className="flex justify-center mt-6 space-x-4">
+              {/* <button
                 type="button"
                 className="px-6 py-2 border rounded-md dark:border-violet-600"
               >
-                Back
+                ক্যাশ অন  ডেলিভারি
                 <span className="sr-only sm:not-sr-only"> to shop</span>
-              </button>
-              <button
-                className=" btn px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600"
-              >
+              </button> */}
+              {/* <button className=" btn px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600">
                 <span className="sr-only sm:not-sr-only">Continue to </span>{" "}
-                 Checkout
+                ক্যাশ অন <br /> ডেলিভারি
+              </button> */}
+              <button className=" btn px-6 py-2 border rounded-md dark:bg-green-600 dark:text-gray-50 dark:border-violet-600">
+                <span className=" text-white">অর্ডার কনফার্ম </span>
               </button>
             </div>
           </fieldset>
