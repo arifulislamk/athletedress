@@ -119,7 +119,7 @@ const JerseyDetails = () => {
             >
               <div>
                 <h1 className=" font-bold md:text-2xl ">{jerseyName}</h1>
-                <p className=" md:text-xl font-medium ">Price : {price}</p>
+                <p className=" md:text-xl font-medium ">দাম: ৳{price}</p>
               </div>
               <div>
                 <select
@@ -159,7 +159,7 @@ const JerseyDetails = () => {
                   </button>
                 </div>
                 <button className=" md:text-xl font-medium md:font-bold bg-cyan-500 rounded-xl p-1 md:p-2">
-                  Add Cart
+                  কার্ট 🛒
                 </button>
                 <div>
                   <button
@@ -167,7 +167,7 @@ const JerseyDetails = () => {
                     onClick={handleSubmit((data) => handleBuy(data, "buy"))}
                     className=" inline-block md:hidden bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
                   >
-                    BUY NOW
+                    অর্ডার করুন
                   </button>
                 </div>
               </div>
@@ -178,7 +178,7 @@ const JerseyDetails = () => {
                   onClick={handleSubmit((data) => handleBuy(data, "buy"))}
                   className=" hidden md:inline-block bg-green-600 md:text-xl font-medium  md:font-bold p-1 md:p-3 rounded-lg "
                 >
-                  BUY NOW
+                  অর্ডার করুন
                 </button>
               </div>
             </form>

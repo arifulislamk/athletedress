@@ -23,8 +23,8 @@ const Slider = () => {
                  Argentina Home Football Jersey 2026 – Player Edition Thai Premium (White)
                 </h2>
                 <p className="  md:text-xl font-medium text-error ">
-                  Regular Price : 1499 Taka <br />
-                  Discount Price :{" "}
+                  রেগুলার প্রাইস : 1499 Taka <br />
+                  ডিসকাউন্ট প্রাইস:{" "}
                   <span className=" text-green-600 font-bold md:text-2xl ">
                     700 Taka
                   </span>
@@ -34,7 +34,7 @@ const Slider = () => {
                     <Link to="/jerseyDetails/681f8ce48523b1e91b92fe13">
                       <Slide triggerOnce>
                         <button className="btn lg:mt-10 text-white w-16 md:w-20 md:font-bold bg-cyan-500 rounded-xl md:p-1">
-                          View Details
+                          এখনই কিনুন
                         </button>
                       </Slide>
                     </Link>
@@ -84,14 +84,14 @@ const Slider = () => {
                   Real Madrid Premium Quality Home Kit 24/25 Circle Nicks
                 </h2>
                 <p className=" md:text-xl font-medium text-error ">
-                  Regular Price : 550 Taka <br />
-                  Discount Price :{" "}
+                  রেগুলার প্রাইস : 550 Taka <br />
+                  ডিসকাউন্ট প্রাইস :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
                 </p>
                 <Link to="/jerseyDetails/68209700402b4ebeb420a4da">
                   <Slide triggerOnce>
                     <button className="btn lg:mt-10  text-white text-xl font-medium bg-cyan-500 rounded-xl p-2">
-                      View Details
+                      এখনই কিনুন
                     </button>
                   </Slide>
                 </Link>
@@ -129,14 +129,14 @@ const Slider = () => {
                   Febricks
                 </h2>
                 <p className=" md:text-xl font-medium text-error ">
-                  Regular Price : 550 Taka <br />
-                  Discount Price :{" "}
+                  রেগুলার প্রাইস : 550 Taka <br />
+                  ডিসকাউন্ট প্রাইস :{" "}
                   <span className=" text-green-600 font-bold ">450 Taka</span>
                 </p>
                 <Link to="/jerseyDetails/681f8e5b8523b1e91b92fe16">
                   <Slide cascade duration={3000} triggerOnce>
                     <button className="btn lg:mt-10 text-white text-xl font-bold bg-cyan-500 rounded-xl p-2">
-                      View Details
+                      এখনই কিনুন
                     </button>
                   </Slide>
                 </Link>

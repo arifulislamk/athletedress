@@ -62,14 +62,14 @@ const NewArrival = () => {
                   </h2>
 
                   <div className="card-actions md:text-xl mt-14 justify-between items-center ">
-                    <p> Quantity : {jerseyQuantity}</p>
+                    <p>নিয়েছেন: {jerseyQuantity}+ জন</p>
                     <p>
-                      Price :
+                      দাম: ৳
                       <span className=" font-bold">{jersey?.price}</span>
                     </p>
                     <Link to={`/jerseyDetails/${jersey?._id}`}>
                       <button className=" bg-green-500 text-cyan-50 md:text-xl md:font-bold p-1 md:p-2 rounded-lg ">
-                        BUY NOW
+                        অর্ডার করুন
                       </button>
                     </Link>
                   </div>
