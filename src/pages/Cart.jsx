@@ -94,7 +94,7 @@ const Cart = () => {
       return await commonAxios.post("/oderconfirm", customer);
     },
     onSuccess: () => {
-      navigate("/oderconfirm") ;
+      // navigate("/oderconfirm") ;
       Swal.fire({
         title: "Thank You For Oder",
         icon: "success",
@@ -128,8 +128,23 @@ const Cart = () => {
       deliveryArea,
       paymentMethod,
     );
-    const customer = {name,city,phone}
-    mutate(customer);
+    const customer = {
+      customerName,
+      phone,
+      email,
+      city,
+      fullAddress,
+      product,
+      deliveryArea,
+      paymentMethod,
+    };
+    
+    if (paymentMethod=="ক্যাশ অন ডেলিভারি") {
+      console.log(paymentMethod,"pailam viteore")
+      mutate(customer);
+    }else if(paymentMethod=="অনলাইন পেমেন্ট"){
+      navigate("/onlinepayment");
+    }
   };
   return (
     <div className=" flex flex-col md:flex-row md:gap-5 p-2 md:px-20 md:py-3  ">
