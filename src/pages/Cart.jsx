@@ -94,7 +94,7 @@ const Cart = () => {
       return await commonAxios.post("/oderconfirm", customer);
     },
     onSuccess: () => {
-      // navigate("/oderconfirm") ;
+      navigate("/oderconfirm") ;
       Swal.fire({
         title: "Thank You For Oder",
         icon: "success",

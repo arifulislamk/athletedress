@@ -12,6 +12,7 @@ import JerseyDetails from "../pages/JerseyDetails";
 import HiddenRoutes from "./HiddenRoutes";
 import Cart from "../pages/Cart";
 import AdminRoutes from "./AdminRoutes";
+import OderConfim from "../pages/OderConfim";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         {
           path: "/cart",
           element: <Cart />
+        },
+        {
+          path: "/oderconfirm",
+          element: <OderConfim />
         }
       ]
     },
