@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useCommonAxios from "../hooks/useCommonAxios";
 import useAuthFire from "../hooks/useAuthFire";
 import Swal from "sweetalert2";
 import axios from "axios";
 import EachCart from "../components/EachCart";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { user } = useAuthFire();
@@ -67,7 +69,7 @@ const Cart = () => {
           });
         const existingCart = JSON.parse(localStorage.getItem("cartList")) || [];
         const updatedCart = existingCart.filter(
-          (item) => item.productId !== _id
+          (item) => item.productId !== _id,
         );
         localStorage.setItem("cartList", JSON.stringify(updatedCart));
         location.reload();
@@ -86,6 +88,23 @@ const Cart = () => {
     );
   }
   // console.log( cartList,'dfsasdf sa') ;
+
+  const { mutate } = useMutation({
+    mutationFn: async (customer) => {
+      return await commonAxios.post("/oderconfirm", customer);
+    },
+    onSuccess: () => {
+      navigate("/oderconfirm") ;
+      Swal.fire({
+        title: "Thank You For Oder",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+    },
+    onError: () => {
+      toast.error("error paise");
+    },
+  });
   const handlecheckout = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -94,11 +113,8 @@ const Cart = () => {
     const email = form.email.value;
     const city = form.city.value;
     const fullAddress = form.address.value;
-    // Select থেকে data
-  const deliveryArea = form.deliveryArea.value;
-
-  // Radio থেকে data
-  const paymentMethod = form.paymentMethod.value;
+    const deliveryArea = form.deliveryArea.value;
+    const paymentMethod = form.paymentMethod.value;
 
     const product = carts?.length ? carts : cartList;
     console.log(
@@ -108,8 +124,12 @@ const Cart = () => {
       city,
       fullAddress,
       product,
-      "paisi chekout11",deliveryArea,paymentMethod
+      "paisi chekout11",
+      deliveryArea,
+      paymentMethod,
     );
+    const customer = {name,city,phone}
+    mutate(customer);
   };
   return (
     <div className=" flex flex-col md:flex-row md:gap-5 p-2 md:px-20 md:py-3  ">
@@ -162,6 +182,7 @@ const Cart = () => {
                   নাম*
                 </label>
                 <input
+                  required
                   id="name"
                   type="text"
                   name="name"
@@ -177,6 +198,7 @@ const Cart = () => {
                   মোবাইল নম্বর*
                 </label>
                 <input
+                  required
                   type="text"
                   name="phone"
                   placeholder="নম্বর"
@@ -206,6 +228,7 @@ const Cart = () => {
                   ডেলিভারির সম্পূর্ণ ঠিকানা*
                 </label>
                 <input
+                  required
                   id="city"
                   type="text"
                   name="city"
@@ -277,19 +300,8 @@ const Cart = () => {
               </p>
             </div>
             <div className="flex justify-center mt-6 space-x-4">
-              {/* <button
-                type="button"
-                className="px-6 py-2 border rounded-md dark:border-violet-600"
-              >
-                ক্যাশ অন  ডেলিভারি
-                <span className="sr-only sm:not-sr-only"> to shop</span>
-              </button> */}
-              {/* <button className=" btn px-6 py-2 border rounded-md dark:bg-violet-600 dark:text-gray-50 dark:border-violet-600">
-                <span className="sr-only sm:not-sr-only">Continue to </span>{" "}
-                ক্যাশ অন <br /> ডেলিভারি
-              </button> */}
               <button className=" btn px-6 py-2 border rounded-md dark:bg-green-600 dark:text-gray-50 dark:border-violet-600">
-                <span className=" text-white">অর্ডার কনফার্ম </span>
+                <span className=" text-white">অর্ডার কনফার্ম</span>
               </button>
             </div>
           </fieldset>
