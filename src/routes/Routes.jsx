@@ -13,6 +13,7 @@ import HiddenRoutes from "./HiddenRoutes";
 import Cart from "../pages/Cart";
 import AdminRoutes from "./AdminRoutes";
 import OderConfim from "../pages/OderConfim";
+import PaymentFaild from "../pages/PaymentFaild";
 
 const router = createBrowserRouter([
     {
@@ -61,8 +62,12 @@ const router = createBrowserRouter([
           element: <Cart />
         },
         {
-          path: "/oderconfirm",
+          path: "/payment/success/:tranId",
           element: <OderConfim />
+        },
+        {
+          path: "/payment/fail/:tranId",
+          element: <PaymentFaild />
         }
       ]
     },

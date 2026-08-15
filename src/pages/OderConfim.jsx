@@ -1,8 +1,9 @@
 import React from "react";
 import { FaCheckCircle, FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const OderConfim = () => {
+  const { tranId } = useParams();
   return (
     <div className="min-h-[70vh] flex items-center justify-center md:px-4 py- md:py-12 bg-gray-50">
       <div className="w-full max-w-md text-center bg-white rounded-2xl shadow-sm border border-gray-100 p-3 md:p-8">
@@ -11,7 +12,7 @@ const OderConfim = () => {
             <FaCheckCircle className="text-5xl text-green-500" />
           </div>
         </div>
-
+        <h1>Transection Id : {tranId}</h1>
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 md:mb-3">
           আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।
         </h1>
