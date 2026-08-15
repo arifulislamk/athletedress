@@ -143,7 +143,17 @@ const Cart = () => {
       console.log(paymentMethod,"pailam viteore")
       mutate(customer);
     }else if(paymentMethod=="অনলাইন পেমেন্ট"){
-      navigate("/onlinepayment");
+      // navigate("/onlinepayment");
+      fetch("http://localhost:5000/onlinepayment", {
+        method: "POST",
+        headers: { "content-type": "application/json"},
+        body : JSON.stringify(customer)
+      })
+      .then((res)=> res.json())
+      .then((result) =>{
+        window.location.replace(result.url)
+        console.log(result)
+      })
     }
   };
   return (
@@ -197,7 +207,6 @@ const Cart = () => {
                   নাম*
                 </label>
                 <input
-                  required
                   id="name"
                   type="text"
                   name="name"
