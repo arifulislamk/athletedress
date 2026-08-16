@@ -12,7 +12,7 @@ const OderConfim = () => {
             <FaCheckCircle className="text-5xl text-green-500" />
           </div>
         </div>
-        <h1>Transection Id : {tranId}</h1>
+        {tranId && <><h1>Transection Id : {tranId}</h1></>}
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 md:mb-3">
           আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।
         </h1>

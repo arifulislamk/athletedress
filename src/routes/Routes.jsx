@@ -62,11 +62,11 @@ const router = createBrowserRouter([
           element: <Cart />
         },
         {
-          path: "/payment/success/:tranId",
+          path: "/payment/success/:tranId?",
           element: <OderConfim />
         },
         {
-          path: "/payment/fail/:tranId",
+          path: "/payment/fail/:tranId?",
           element: <PaymentFaild />
         }
       ]
