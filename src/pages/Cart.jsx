@@ -94,7 +94,7 @@ const Cart = () => {
       return await commonAxios.post("/oderconfirm", customer);
     },
     onSuccess: () => {
-      navigate("/payment/success") ;
+      navigate("/payment/success");
       Swal.fire({
         title: "Thank You For Oder",
         icon: "success",
@@ -105,24 +105,33 @@ const Cart = () => {
       toast.error("error paise");
     },
   });
+  const product = carts?.length ? carts : cartList;
+  const totalPrice = product.reduce((total, p) => {
+    return total + Number(p.price || 0) * Number(p.count || 0);
+  }, 0);
+  console.log(product, "price", totalPrice);
   const handlecheckout = async (event) => {
     event.preventDefault();
     const form = event.target;
     const customerName = form.name.value;
     const phone = form.phone.value;
-    const email = form.email.value;
-    const city = form.city.value;
-    const fullAddress = form.address.value;
+    const anothernumber = form.anothernumber.value;
+    const fulladdress1 = form.fulladdress1.value;
+    const DelivaryInstraction = form.DelivaryInstraction.value;
     const deliveryArea = form.deliveryArea.value;
     const paymentMethod = form.paymentMethod.value;
 
-    const product = carts?.length ? carts : cartList;
     console.log(
+      "  name",
       customerName,
+      "phone:",
       phone,
-      email,
-      city,
-      fullAddress,
+      "anotpp:",
+      anothernumber,
+      "add:",
+      fulladdress1,
+      "deli:",
+      DelivaryInstraction,
       product,
       "paisi chekout11",
       deliveryArea,
@@ -131,14 +140,15 @@ const Cart = () => {
     const customer = {
       customerName,
       phone,
-      email,
-      city,
-      fullAddress,
-      product,
+      anothernumber,
+      fulladdress1,
+      DelivaryInstraction,
       deliveryArea,
       paymentMethod,
+      product,
+      totalPrice
     };
-    
+
     if (paymentMethod=="ক্যাশ অন ডেলিভারি") {
       console.log(paymentMethod,"pailam viteore")
       mutate(customer);
@@ -201,7 +211,7 @@ const Cart = () => {
             <div className="grid grid-cols-6 gap-3 col-span-full lg:col-span-3">
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="firstname"
+                  htmlFor="name"
                   className="text-sm md:text-xl md:font-medium"
                 >
                   নাম*
@@ -216,13 +226,14 @@ const Cart = () => {
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="number"
+                  htmlFor="phone"
                   className="text-sm md:text-xl md:font-medium"
                 >
                   মোবাইল নম্বর*
                 </label>
                 <input
                   required
+                  id="phone"
                   type="text"
                   name="phone"
                   placeholder="নম্বর"
@@ -231,46 +242,46 @@ const Cart = () => {
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="email"
+                  htmlFor="anothernumber"
                   className="text-sm md:text-xl md:font-medium"
                 >
                   বিকল্প মোবাইল নম্বর (যদি থাকে):
                 </label>
                 <input
-                  id="email"
-                  type="number"
-                  name="email"
+                  id="anothernumber"
+                  type="anothernumber"
+                  name="anothernumber"
                   placeholder="নম্বর"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
               <div className="col-span-full sm:col-span-3">
                 <label
-                  htmlFor="city"
+                  htmlFor="fulladdress1"
                   className="text-sm md:text-xl md:font-medium"
                 >
                   ডেলিভারির সম্পূর্ণ ঠিকানা*
                 </label>
                 <input
                   required
-                  id="city"
+                  id="fulladdress1"
                   type="text"
-                  name="city"
+                  name="fulladdress1"
                   placeholder="গ্রাম/ওয়ার্ড, স্থানীয় বাজার, ইউনিয়ন/পৌরসভা, থানা, জেলা"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
               </div>
               <div className="col-span-full">
                 <label
-                  htmlFor="address"
+                  htmlFor="DelivaryInstraction"
                   className=" md:text-xl md:font-medium "
                 >
                   ডেলিভারি ম্যানের জন্য অতিরিক্ত নির্দেশনা:
                 </label>
                 <input
-                  id="address"
+                  id="DelivaryInstraction"
                   type="text"
-                  name="address"
+                  name="DelivaryInstraction"
                   placeholder="না লিখলেও সমস্যা নেই"
                   className="w-full bg-white border border-cyan-950 md:p-3 rounded-md focus:ring focus:ring-opacity-5"
                 />
@@ -320,7 +331,8 @@ const Cart = () => {
 
             <div className=" mt-4">
               <p>
-                সর্বমোট :<span className="font-semibold"> 357 টাকা</span>
+                সর্বমোট :
+                <span className="font-semibold"> {totalPrice} টাকা</span>
               </p>
             </div>
             <div className="flex justify-center mt-6 space-x-4">
