@@ -144,7 +144,7 @@ const Cart = () => {
       mutate(customer);
     }else if(paymentMethod=="অনলাইন পেমেন্ট"){
       // navigate("/onlinepayment");
-      fetch("http://localhost:5000/onlinepayment", {
+      fetch(`${import.meta.env.VITE_API_URL}/onlinepayment`, {
         method: "POST",
         headers: { "content-type": "application/json"},
         body : JSON.stringify(customer)
