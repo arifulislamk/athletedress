@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const EachCart = ({ cart, handleDeleteCart, user }) => {
+const EachCart = ({ cart, handleDeleteCart, user, setCartCounts }) => {
   // console.log(cart, "dfd");
   const [count, setCount] = useState(cart?.count);
   const handleDicrement = () => {
@@ -41,10 +41,10 @@ const EachCart = ({ cart, handleDeleteCart, user }) => {
               <button
                 type="button"
                 onClick={() => {
-                  if (cart._id) {
-                    handleDeleteCart(cart._id); // Server cart
-                  } else if (cart.productId) {
-                    handleDeleteCart(cart.productId); // Local cart
+                  if (cart?._id) {
+                    handleDeleteCart(cart?._id); // Server cart
+                  } else if (cart?.productId) {
+                    handleDeleteCart(cart?.productId); // Local cart
                   }
                 }}
                 className="flex items-center px-1 md:px-2 py-1 pl-0 space-x-1"
@@ -78,7 +78,16 @@ const EachCart = ({ cart, handleDeleteCart, user }) => {
               <div className="flex divide-x-2 rounded ">
                 <button
                   type="button"
-                  onClick={handleDicrement}
+                  onClick={() => {
+                    if (count > 1) {
+                      const newCount = count - 1;
+                      setCount(newCount);
+                      setCartCounts((prev) => ({
+                        ...prev,
+                        [cart.productId]: newCount,
+                      }));
+                    }
+                  }}
                   className="px-3 font-bold text-xl py-1"
                 >
                   -
@@ -90,7 +99,14 @@ const EachCart = ({ cart, handleDeleteCart, user }) => {
                   {count}
                 </button>
                 <button
-                  onClick={() => setCount(count + 1)}
+                  onClick={() => {
+                    const newCount = count + 1;
+                    setCount(newCount);
+                    setCartCounts((prev) => ({
+                      ...prev,
+                      [cart.productId]: newCount,
+                    }));
+                  }}
                   type="button"
                   className="px-3 font-bold text-xl py-1"
                 >

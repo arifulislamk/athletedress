@@ -106,7 +106,13 @@ const Cart = () => {
     },
   });
   const product = carts?.length ? carts : cartList;
-  const totalPrice = product.reduce((total, p) => {
+  const [cartCounts, setCartCounts] = useState({});
+  const updatedProduct = product.map((p) => ({
+    ...p,
+    count: cartCounts[p.productId] ?? p.count,
+  }));
+  console.log(updatedProduct,"updated");
+  const totalPrice = updatedProduct?.reduce((total, p) => {
     return total + Number(p.price || 0) * Number(p.count || 0);
   }, 0);
   console.log(product, "price", totalPrice);
@@ -145,25 +151,25 @@ const Cart = () => {
       DelivaryInstraction,
       deliveryArea,
       paymentMethod,
-      product,
-      totalPrice
+      updatedProduct,
+      totalPrice,
     };
 
-    if (paymentMethod=="ক্যাশ অন ডেলিভারি") {
-      console.log(paymentMethod,"pailam viteore")
+    if (paymentMethod == "ক্যাশ অন ডেলিভারি") {
+      console.log(paymentMethod, "pailam viteore");
       mutate(customer);
-    }else if(paymentMethod=="অনলাইন পেমেন্ট"){
+    } else if (paymentMethod == "অনলাইন পেমেন্ট") {
       // navigate("/onlinepayment");
       fetch(`${import.meta.env.VITE_API_URL}/onlinepayment`, {
         method: "POST",
-        headers: { "content-type": "application/json"},
-        body : JSON.stringify(customer)
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(customer),
       })
-      .then((res)=> res.json())
-      .then((result) =>{
-        window.location.replace(result.url)
-        console.log(result)
-      })
+        .then((res) => res.json())
+        .then((result) => {
+          window.location.replace(result.url);
+          console.log(result);
+        });
     }
   };
   return (
@@ -171,21 +177,23 @@ const Cart = () => {
       <div className="flex flex-col border w-full rounded-md border-red-200 mx-auto items-center max-w-3xl p-6 space-y-4 sm:p-10 dark:bg-gray-50 dark:text-gray-800">
         <h2 className="md:text-xl font-semibold">Your cart</h2>
         <ul className="flex flex-col divide-y dark:divide-gray-300">
-          {carts && carts.length > 0 ? (
-            carts.map((cart) => (
+          {carts && carts?.length > 0 ? (
+            carts?.map((cart) => (
               <EachCart
                 key={cart?._id}
                 cart={cart}
                 handleDeleteCart={handleDeleteCart}
+                setCartCounts={setCartCounts}
               />
             ))
-          ) : cartList.length > 0 ? (
-            cartList.map((cart, idx) => (
+          ) : cartList?.length > 0 && !user ? (
+            cartList?.map((cart, idx) => (
               <EachCart
                 key={cart?._id}
                 cart={cart}
                 handleDeleteCart={handleDeleteCart}
                 user={user}
+                setCartCounts={setCartCounts}
               />
               // Optionally use: <EachCart cart={cart} />
             ))
